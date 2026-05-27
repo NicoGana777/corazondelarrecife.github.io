@@ -242,6 +242,49 @@ a { color: inherit; text-decoration: none; }
 }
 .nav__links a:hover::after { width: 100%; }
 
+.nav__toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.5rem;
+  padding: 0 0.85rem;
+  border: 1px solid rgba(201, 169, 97, 0.34);
+  border-radius: 999px;
+  background: rgba(5, 13, 26, 0.42);
+  color: var(--c-bone);
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  touch-action: manipulation;
+}
+
+.nav__toggle-icon {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+}
+
+.nav__toggle-line {
+  width: 1rem;
+  height: 1px;
+  background: currentColor;
+  transform-origin: center;
+  transition: transform 0.25s var(--ease), opacity 0.25s var(--ease);
+}
+
+.nav.is-open .nav__toggle-line:nth-child(1) {
+  transform: translateY(5px) rotate(45deg);
+}
+
+.nav.is-open .nav__toggle-line:nth-child(2) {
+  opacity: 0;
+}
+
+.nav.is-open .nav__toggle-line:nth-child(3) {
+  transform: translateY(-5px) rotate(-45deg);
+}
+
 /* ============================================================
    INDICADOR DE PROFUNDIDAD (lado izquierdo, fijo)
    ============================================================ */
@@ -4312,5 +4355,362 @@ footer,
     width: auto;
     flex-wrap: nowrap;
     white-space: nowrap;
+  }
+}
+
+/* ============================================================
+   FUNCIONALIDAD RESPONSIVE FINAL
+   Menu movil, anclas con offset y areas tactiles comodas.
+   ============================================================ */
+:root {
+  --nav-height: 96px;
+}
+
+html {
+  scroll-padding-top: calc(var(--nav-height) + 1.25rem);
+}
+
+#inicio-prologo,
+#inicio,
+#sobre-el-viaje,
+#capas,
+#capa-2,
+#capa-3,
+#capa-4,
+#capa-5,
+#dedicatoria,
+#creditos {
+  scroll-margin-top: calc(var(--nav-height) + 1.25rem);
+}
+
+a,
+button,
+input {
+  -webkit-tap-highlight-color: rgba(201, 169, 97, 0.22);
+}
+
+.nav__links a,
+.bubble,
+.modal__close,
+.sound-toggle,
+.dedicatoria__circle,
+.dedicatoria__emoji-choice,
+.dedicatoria__submit,
+.tributo,
+.tributo__remove {
+  touch-action: manipulation;
+}
+
+.nav__links a:focus-visible,
+.bubble:focus-visible,
+.sound-toggle:focus-visible,
+.dedicatoria__submit:focus-visible,
+.tributo:focus-visible {
+  outline: 1px solid var(--c-gold);
+  outline-offset: 4px;
+}
+
+.bubble {
+  cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .bubble:hover {
+    border-color: rgba(201, 169, 97, 0.72);
+    box-shadow: 0 0 34px rgba(201, 169, 97, 0.14), inset 0 0 22px rgba(127, 184, 212, 0.08);
+  }
+}
+
+@media (max-width: 760px) {
+  .nav {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+  }
+
+  .nav__toggle {
+    display: inline-flex;
+    position: absolute;
+    top: 0.72rem;
+    right: clamp(4rem, 25vw, 8rem);
+    z-index: 2;
+  }
+
+  .nav__brand {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+    align-self: center;
+    text-align: left;
+    max-width: calc(100% - 6rem);
+  }
+
+  .nav__credits {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .nav__links {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
+    padding: 0;
+    transition: max-height 0.28s var(--ease), opacity 0.2s var(--ease), padding 0.28s var(--ease);
+  }
+
+  .nav.is-open .nav__links {
+    max-height: 12rem;
+    opacity: 1;
+    padding-top: 0.35rem;
+  }
+
+  .nav__links li {
+    min-width: 0;
+  }
+
+  .nav__links a {
+    display: grid;
+    min-height: 2.55rem;
+    place-items: center;
+    padding: 0.65rem 0.5rem;
+    border: 1px solid rgba(245, 241, 234, 0.14);
+    border-radius: 999px;
+    background: rgba(5, 13, 26, 0.28);
+    text-align: center;
+  }
+
+  .nav__links a::after {
+    content: none;
+  }
+
+  .prologo__overlay,
+  .hero {
+    padding-top: calc(var(--nav-height) + 2rem);
+  }
+}
+
+@media (max-width: 420px) {
+  .nav__links {
+    grid-template-columns: 1fr;
+  }
+
+  .nav.is-open .nav__links {
+    max-height: 18rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .bubble,
+  .capa--1 .bubble,
+  .capa--2 .bubble,
+  .capa--3 .bubble,
+  .capa--4 .bubble,
+  .capa--5 .bubble {
+    min-height: 3.9rem;
+  }
+
+  .modal__close,
+  .sound-toggle,
+  .dedicatoria__circle {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .dedicatoria__emoji-choice {
+    width: 2.65rem;
+  }
+
+  .dedicatoria__emoji-picker {
+    gap: 0.35rem;
+  }
+}
+
+/* ============================================================
+   CORRECCION MOVIL ESTRICTA
+   Algunos celulares reportan un ancho CSS mayor; desde 900px se usa
+   una interfaz tactil estable para evitar tarjetas cortadas.
+   ============================================================ */
+@media (max-width: 900px) {
+  .nav {
+    grid-template-columns: 1fr !important;
+    justify-items: center !important;
+    align-items: center !important;
+    gap: 0.65rem !important;
+    padding: 0.75rem 1rem 0.9rem !important;
+    text-align: center !important;
+  }
+
+  .nav__brand {
+    grid-column: 1 / -1 !important;
+    grid-row: 1 !important;
+    justify-self: center !important;
+    max-width: 100% !important;
+    text-align: center !important;
+  }
+
+  .nav__toggle {
+    display: inline-flex !important;
+    position: static !important;
+    grid-column: 1 / -1 !important;
+    grid-row: 3 !important;
+    justify-self: center !important;
+    z-index: 3 !important;
+  }
+
+  .nav__credits {
+    grid-column: 1 / -1 !important;
+    grid-row: 2 !important;
+    justify-self: stretch !important;
+    width: 100% !important;
+  }
+
+  .nav__links {
+    grid-column: 1 / -1 !important;
+    grid-row: 4 !important;
+    width: 100% !important;
+    max-width: none !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    justify-content: stretch !important;
+    gap: 0.55rem !important;
+    padding: 0 !important;
+    transition: max-height 0.28s var(--ease), opacity 0.2s var(--ease), padding 0.28s var(--ease) !important;
+  }
+
+  .nav.is-open .nav__links {
+    max-height: 14rem !important;
+    opacity: 1 !important;
+    padding-top: 0.45rem !important;
+  }
+
+  .nav__links a {
+    display: grid !important;
+    min-height: 2.6rem !important;
+    place-items: center !important;
+    padding: 0.65rem 0.5rem !important;
+    border: 1px solid rgba(245, 241, 234, 0.14) !important;
+    border-radius: 999px !important;
+    background: rgba(5, 13, 26, 0.32) !important;
+    text-align: center !important;
+  }
+
+  .nav__links a::after {
+    content: none !important;
+  }
+
+  .capa__inner,
+  .capa--1 .capa__inner,
+  .capa--2 .capa__inner,
+  .capa--3 .capa__inner,
+  .capa--4 .capa__inner,
+  .capa--5 .capa__inner {
+    width: min(100%, 34rem) !important;
+    max-width: 34rem !important;
+    display: block !important;
+    margin-inline: auto !important;
+  }
+
+  .bubbles,
+  .capa--1 .bubbles,
+  .capa--2 .bubbles,
+  .capa--3 .bubbles,
+  .capa--4 .bubbles,
+  .capa--5 .bubbles {
+    width: 100% !important;
+    max-width: 28rem !important;
+    height: auto !important;
+    min-height: 0 !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 0.8rem !important;
+    margin-inline: auto !important;
+    padding: 0 !important;
+    border: 0 !important;
+  }
+
+  .bubbles::before,
+  .bubbles::after,
+  .capa--1 .bubbles::before,
+  .capa--2 .bubbles::before,
+  .capa--3 .bubbles::before,
+  .capa--4 .bubbles::before,
+  .capa--4 .bubbles::after,
+  .capa--5 .bubbles::before {
+    content: none !important;
+    display: none !important;
+  }
+
+  .bubble,
+  .capa--1 .bubble,
+  .capa--2 .bubble,
+  .capa--3 .bubble,
+  .capa--4 .bubble,
+  .capa--5 .bubble {
+    position: relative !important;
+    inset: auto !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 3.95rem !important;
+    margin: 0 !important;
+    padding: 0.78rem 1rem !important;
+    justify-self: stretch !important;
+    flex: none !important;
+    flex-basis: auto !important;
+    grid-column: auto !important;
+    border-radius: 0.65rem !important;
+    clip-path: none !important;
+    transform: none !important;
+    animation: none !important;
+    aspect-ratio: auto !important;
+  }
+
+  .capa--1 .bubble:nth-child(3n),
+  .capa--2 .bubble:nth-child(even),
+  .capa--3 .bubble:nth-child(even),
+  .capa--4 .bubble:nth-child(3n),
+  .capa--5 .bubble:nth-child(even) {
+    width: 100% !important;
+    margin-left: 0 !important;
+    justify-self: stretch !important;
+    transform: none !important;
+    grid-column: auto !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .nav__links {
+    grid-template-columns: 1fr !important;
+  }
+
+  .nav.is-open .nav__links {
+    max-height: 20rem !important;
+  }
+
+  .capa {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .bubbles,
+  .capa--1 .bubbles,
+  .capa--2 .bubbles,
+  .capa--3 .bubbles,
+  .capa--4 .bubbles,
+  .capa--5 .bubbles {
+    max-width: 100% !important;
   }
 }
