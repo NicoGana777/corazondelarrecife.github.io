@@ -10,6 +10,14 @@
   const $  = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
+  const updateInputModeClass = () => {
+    const isTouchLayout = window.matchMedia('(pointer: coarse)').matches || window.innerWidth <= 900;
+    document.body.classList.toggle('is-touch-layout', isTouchLayout);
+  };
+
+  updateInputModeClass();
+  window.addEventListener('resize', updateInputModeClass);
+
   /* ============================================================
      1. MODAL DE BURBUJAS
      ============================================================ */
