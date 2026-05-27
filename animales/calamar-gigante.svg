@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Calamar gigante" fill="none" stroke="url(#animalStroke)" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round">
+  <title>Calamar gigante</title>
+  <defs>
+    <linearGradient id="animalStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d8f6ff" stop-opacity="0.95"/>
+      <stop offset="48%" stop-color="#7fb8d4" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#c9a961" stop-opacity="0.72"/>
+    </linearGradient>
+    <filter id="aquaGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="soft"/>
+      <feColorMatrix in="soft" type="matrix" values="0 0 0 0 0.45  0 0 0 0 0.75  0 0 0 0 0.9  0 0 0 0.65 0" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style><![CDATA[
+      svg { overflow: visible; }
+      g { filter: url(#aquaGlow); }
+      path, ellipse, rect, line, circle { vector-effect: non-scaling-stroke; }
+      path, ellipse, rect, line { stroke: url(#animalStroke); }
+      circle:not([fill="none"]) { stroke: none; }
+      path[opacity], ellipse[opacity], line[opacity] { opacity: 0.62; }
+    ]]></style>
+  </defs>
+  <g opacity="0.98">
+    <path d="M80 15 Q106 28 110 58 Q99 75 80 76 Q61 75 50 58 Q54 28 80 15 Z"/>
+    <path d="M58 72 Q36 88 22 112 M70 76 Q60 95 55 112 M82 77 Q82 96 82 113 M94 76 Q104 95 109 112 M102 72 Q124 88 138 112"/>
+    <path d="M63 36 Q80 44 97 36" opacity="0.4"/>
+  </g>
+</svg>

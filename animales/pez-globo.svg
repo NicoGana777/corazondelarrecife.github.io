@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Pez globo" fill="none" stroke="url(#animalStroke)" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round">
+  <title>Pez globo</title>
+  <defs>
+    <linearGradient id="animalStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d8f6ff" stop-opacity="0.95"/>
+      <stop offset="48%" stop-color="#7fb8d4" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#c9a961" stop-opacity="0.72"/>
+    </linearGradient>
+    <filter id="aquaGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="soft"/>
+      <feColorMatrix in="soft" type="matrix" values="0 0 0 0 0.45  0 0 0 0 0.75  0 0 0 0 0.9  0 0 0 0.65 0" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style><![CDATA[
+      svg { overflow: visible; }
+      g { filter: url(#aquaGlow); }
+      path, ellipse, rect, line, circle { vector-effect: non-scaling-stroke; }
+      path, ellipse, rect, line { stroke: url(#animalStroke); }
+      circle:not([fill="none"]) { stroke: none; }
+      path[opacity], ellipse[opacity], line[opacity] { opacity: 0.62; }
+    ]]></style>
+  </defs>
+  <g opacity="0.98">
+    <circle cx="80" cy="64" r="34"/>
+    <path d="M46 62 L27 52 L27 76 Z M114 62 L137 49 L133 78 Z"/>
+    <path d="M115.0 64.0 L125.0 64.0" opacity="0.45"/>
+    <path d="M110.3 81.5 L119.0 86.5" opacity="0.45"/>
+    <path d="M97.5 94.3 L102.5 103.0" opacity="0.45"/>
+    <path d="M80.0 99.0 L80.0 109.0" opacity="0.45"/>
+    <path d="M62.5 94.3 L57.5 103.0" opacity="0.45"/>
+    <path d="M49.7 81.5 L41.0 86.5" opacity="0.45"/>
+    <path d="M45.0 64.0 L35.0 64.0" opacity="0.45"/>
+    <path d="M49.7 46.5 L41.0 41.5" opacity="0.45"/>
+    <path d="M62.5 33.7 L57.5 25.0" opacity="0.45"/>
+    <path d="M80.0 29.0 L80.0 19.0" opacity="0.45"/>
+    <path d="M97.5 33.7 L102.5 25.0" opacity="0.45"/>
+    <path d="M110.3 46.5 L119.0 41.5" opacity="0.45"/>
+    <circle cx="94" cy="55" r="2" fill="#f5f1ea" stroke="none"/>
+  </g>
+</svg>

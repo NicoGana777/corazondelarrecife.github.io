@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Lenguado" fill="none" stroke="url(#animalStroke)" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round">
+  <title>Lenguado</title>
+  <defs>
+    <linearGradient id="animalStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d8f6ff" stop-opacity="0.95"/>
+      <stop offset="48%" stop-color="#7fb8d4" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#c9a961" stop-opacity="0.72"/>
+    </linearGradient>
+    <filter id="aquaGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="soft"/>
+      <feColorMatrix in="soft" type="matrix" values="0 0 0 0 0.45  0 0 0 0 0.75  0 0 0 0 0.9  0 0 0 0.65 0" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style><![CDATA[
+      svg { overflow: visible; }
+      g { filter: url(#aquaGlow); }
+      path, ellipse, rect, line, circle { vector-effect: non-scaling-stroke; }
+      path, ellipse, rect, line { stroke: url(#animalStroke); }
+      circle:not([fill="none"]) { stroke: none; }
+      path[opacity], ellipse[opacity], line[opacity] { opacity: 0.62; }
+    ]]></style>
+  </defs>
+  <g opacity="0.98">
+    <path d="M18 67 Q53 38 104 47 Q133 53 145 67 Q126 84 85 82 Q48 81 18 67 Z"/>
+    <circle cx="103" cy="58" r="2" fill="#f5f1ea" stroke="none"/><circle cx="113" cy="61" r="2" fill="#f5f1ea" stroke="none"/>
+    <path d="M44 67 Q76 60 124 69" opacity="0.35"/>
+  </g>
+</svg>

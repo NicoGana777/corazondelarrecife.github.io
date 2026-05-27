@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Coral cerebro" fill="none" stroke="url(#animalStroke)" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round">
+  <title>Coral cerebro</title>
+  <defs>
+    <linearGradient id="animalStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d8f6ff" stop-opacity="0.95"/>
+      <stop offset="48%" stop-color="#7fb8d4" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#c9a961" stop-opacity="0.72"/>
+    </linearGradient>
+    <filter id="aquaGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="soft"/>
+      <feColorMatrix in="soft" type="matrix" values="0 0 0 0 0.45  0 0 0 0 0.75  0 0 0 0 0.9  0 0 0 0.65 0" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style><![CDATA[
+      svg { overflow: visible; }
+      g { filter: url(#aquaGlow); }
+      path, ellipse, rect, line, circle { vector-effect: non-scaling-stroke; }
+      path, ellipse, rect, line { stroke: url(#animalStroke); }
+      circle:not([fill="none"]) { stroke: none; }
+      path[opacity], ellipse[opacity], line[opacity] { opacity: 0.62; }
+    ]]></style>
+  </defs>
+  <g opacity="0.98">
+    <path d="M32 83 Q32 37 78 31 Q126 33 128 78 Q119 100 80 98 Q45 101 32 83 Z"/>
+    <path d="M49 78 Q43 55 62 51 Q81 48 78 68 Q75 85 95 82 Q111 79 109 63 Q107 47 90 45" opacity="0.55"/>
+    <path d="M57 91 Q50 72 67 69 Q86 66 88 50 Q91 35 109 42" opacity="0.45"/>
+  </g>
+</svg>

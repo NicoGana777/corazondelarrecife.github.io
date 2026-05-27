@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Medusas" fill="none" stroke="url(#animalStroke)" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round">
+  <title>Medusas</title>
+  <defs>
+    <linearGradient id="animalStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d8f6ff" stop-opacity="0.95"/>
+      <stop offset="48%" stop-color="#7fb8d4" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#c9a961" stop-opacity="0.72"/>
+    </linearGradient>
+    <filter id="aquaGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="soft"/>
+      <feColorMatrix in="soft" type="matrix" values="0 0 0 0 0.45  0 0 0 0 0.75  0 0 0 0 0.9  0 0 0 0.65 0" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style><![CDATA[
+      svg { overflow: visible; }
+      g { filter: url(#aquaGlow); }
+      path, ellipse, rect, line, circle { vector-effect: non-scaling-stroke; }
+      path, ellipse, rect, line { stroke: url(#animalStroke); }
+      circle:not([fill="none"]) { stroke: none; }
+      path[opacity], ellipse[opacity], line[opacity] { opacity: 0.62; }
+    ]]></style>
+  </defs>
+  <g opacity="0.98">
+    <path d="M42 48 Q42 16 80 16 Q118 16 118 48 Q108 42 99 49 Q90 42 80 49 Q70 42 61 49 Q52 42 42 48 Z"/>
+    <path d="M58 50 Q51 72 57 106 M74 50 Q82 72 74 106 M90 50 Q82 72 90 106 M106 50 Q113 72 103 106" opacity="0.7"/>
+    <path d="M62 26 Q66 38 62 48 M80 22 V50 M98 26 Q94 38 98 48" opacity="0.35"/>
+  </g>
+</svg>

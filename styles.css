@@ -1,0 +1,3372 @@
+/* ============================================================
+   LA INMERSIÓN — Estilos
+   Paleta: descenso continuo de azul claro a negro absoluto
+   Tipografías: Cormorant Garamond (serif) + Manrope (sans)
+   ============================================================ */
+
+/* ----------- VARIABLES ----------- */
+:root {
+  /* Paleta */
+  --c-navy-deep: #0a1a2f;
+  --c-ocean-black: #050d1a;
+  --c-aqua-light: #7fb8d4;
+  --c-bone: #f5f1ea;
+  --c-gold: #c9a961;
+  --c-bone-dim: rgba(245, 241, 234, 0.65);
+  --c-bone-faint: rgba(245, 241, 234, 0.4);
+  --c-bone-line: rgba(245, 241, 234, 0.15);
+
+  /* Tipografías */
+  --font-serif: "Cormorant Garamond", "Times New Roman", serif;
+  --font-sans: "Manrope", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Escala fluida */
+  --fs-display: clamp(3.5rem, 9vw, 8rem);
+  --fs-title: clamp(2.2rem, 5vw, 4rem);
+  --fs-subtitle: clamp(1.1rem, 2vw, 1.4rem);
+  --fs-body: clamp(1rem, 1.2vw, 1.125rem);
+  --fs-eyebrow: 0.75rem;
+  --fs-small: 0.875rem;
+
+  /* Espaciado */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+
+  /* Otros */
+  --radius: 999px;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ----------- RESET ----------- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background: #050d1a;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  color: var(--c-bone);
+  background: #050d1a;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  isolation: isolate;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% -18%, rgba(127, 184, 212, 0.35), transparent 42%),
+    linear-gradient(to bottom,
+      #285f83 0%,
+      #1c496d 13%,
+      #123559 28%,
+      #0b2647 43%,
+      #071b35 58%,
+      #041126 74%,
+      #020817 89%,
+      #000000 100%);
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+img, svg { display: block; max-width: 100%; }
+
+button {
+  font-family: inherit;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+ul { list-style: none; }
+a { color: inherit; text-decoration: none; }
+
+/* ----------- TIPOGRAFÍA UTILITARIA ----------- */
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--fs-eyebrow);
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--c-bone-dim);
+  display: inline-block;
+}
+
+.roman {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--c-gold);
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: var(--fs-title);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.section-lead {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: var(--fs-subtitle);
+  color: var(--c-bone-dim);
+  max-width: 50ch;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   NAVEGACIÓN
+   ============================================================ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem clamp(1.5rem, 4vw, 3rem);
+  background: linear-gradient(to bottom, rgba(5, 13, 26, 0.6), transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background 0.3s var(--ease);
+}
+
+.nav__brand {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--c-bone);
+}
+
+.nav__links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav__links a {
+  font-size: var(--fs-small);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: lowercase;
+  color: var(--c-bone-dim);
+  position: relative;
+  padding: 0.25rem 0;
+  transition: color 0.3s var(--ease);
+}
+
+.nav__links a::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--c-gold);
+  transition: width 0.4s var(--ease-out);
+}
+
+.nav__links a:hover {
+  color: var(--c-bone);
+}
+.nav__links a:hover::after { width: 100%; }
+
+/* ============================================================
+   INDICADOR DE PROFUNDIDAD (lado izquierdo, fijo)
+   ============================================================ */
+.depth-indicator {
+  position: fixed;
+  left: clamp(1rem, 3vw, 2.5rem);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  opacity: 0;
+  transition: opacity 0.6s var(--ease);
+  pointer-events: none;
+}
+
+.depth-indicator.is-visible { opacity: 1; }
+
+.depth-indicator__bar {
+  width: 2px;
+  height: 180px;
+  background: var(--c-bone-line);
+  position: relative;
+  overflow: hidden;
+}
+
+.depth-indicator__progress {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 0%;
+  background: linear-gradient(to bottom, var(--c-aqua-light), var(--c-gold));
+  transition: height 0.15s linear;
+}
+
+.depth-indicator__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--c-bone-dim);
+}
+
+.depth-indicator__value {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--c-bone);
+  letter-spacing: 0;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.depth-indicator__unit {
+  font-size: 0.65rem;
+  color: var(--c-bone-faint);
+}
+
+.depth-indicator__capa {
+  font-size: 0.7rem;
+  color: var(--c-gold);
+  margin-top: 0.25rem;
+  max-width: 9ch;
+  line-height: 1.3;
+}
+
+/* ============================================================
+   BOTÓN DE SONIDO
+   ============================================================ */
+.sound-toggle {
+  position: fixed;
+  bottom: clamp(1.5rem, 3vw, 2.5rem);
+  right: clamp(1.5rem, 3vw, 2.5rem);
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--c-bone-line);
+  border-radius: var(--radius);
+  background: rgba(5, 13, 26, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--c-bone-dim);
+  transition: all 0.3s var(--ease);
+}
+
+.sound-toggle:hover {
+  border-color: var(--c-gold);
+  color: var(--c-bone);
+}
+
+.sound-toggle__icon {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--c-bone-dim);
+  transition: background 0.3s;
+}
+
+.sound-toggle[aria-pressed="true"] .sound-toggle__icon {
+  background: var(--c-gold);
+  box-shadow: 0 0 12px var(--c-gold);
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  margin-top: -18vh;
+  padding-top: 18vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: transparent;
+}
+
+.hero::after,
+.intro::after,
+.capa::before,
+.capa::after,
+.cierre::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: clamp(7rem, 14vw, 15rem);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hero::after {
+  content: none;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero__light {
+  display: none;
+}
+
+@keyframes lightPulse {
+  0%, 100% { opacity: 0.7; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.05); }
+}
+
+.hero__particles {
+  position: absolute;
+  inset: 0;
+}
+
+.hero__particles span {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(245, 241, 234, 0.4);
+  box-shadow: 0 0 6px rgba(127, 184, 212, 0.5);
+  bottom: -10px;
+  animation: rise linear infinite;
+}
+
+.hero__particles span:nth-child(1)  { left: 8%;  animation-duration: 12s; animation-delay: 0s;  width: 3px; height: 3px; }
+.hero__particles span:nth-child(2)  { left: 18%; animation-duration: 16s; animation-delay: 2s;  width: 5px; height: 5px; }
+.hero__particles span:nth-child(3)  { left: 28%; animation-duration: 14s; animation-delay: 4s;  width: 2px; height: 2px; }
+.hero__particles span:nth-child(4)  { left: 38%; animation-duration: 18s; animation-delay: 1s;  width: 4px; height: 4px; }
+.hero__particles span:nth-child(5)  { left: 48%; animation-duration: 13s; animation-delay: 3s;  width: 3px; height: 3px; }
+.hero__particles span:nth-child(6)  { left: 58%; animation-duration: 17s; animation-delay: 5s;  width: 5px; height: 5px; }
+.hero__particles span:nth-child(7)  { left: 68%; animation-duration: 15s; animation-delay: 2s;  width: 3px; height: 3px; }
+.hero__particles span:nth-child(8)  { left: 78%; animation-duration: 19s; animation-delay: 0s;  width: 4px; height: 4px; }
+.hero__particles span:nth-child(9)  { left: 88%; animation-duration: 14s; animation-delay: 6s;  width: 2px; height: 2px; }
+.hero__particles span:nth-child(10) { left: 12%; animation-duration: 20s; animation-delay: 8s;  width: 3px; height: 3px; }
+.hero__particles span:nth-child(11) { left: 72%; animation-duration: 11s; animation-delay: 7s;  width: 4px; height: 4px; }
+.hero__particles span:nth-child(12) { left: 52%; animation-duration: 22s; animation-delay: 9s;  width: 2px; height: 2px; }
+
+@keyframes rise {
+  0%   { transform: translateY(0) translateX(0); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 0.8; }
+  100% { transform: translateY(-110vh) translateX(20px); opacity: 0; }
+}
+
+.hero__silhouette {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  opacity: 0.5;
+}
+
+/* ============================================================
+   CRIATURAS MARINAS DEL HERO
+   Ilustraciones tipo botánica/científica con líneas finas
+   ============================================================ */
+.hero__creatures {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.creature {
+  position: absolute;
+  color: var(--c-aqua-light);
+  will-change: transform;
+}
+
+/* Ballena jorobada — arriba a la izquierda, cruza lento */
+.creature--whale {
+  width: clamp(90px, 13vw, 170px);
+  top: 10%;
+  left: -15%;
+  opacity: 0.18;
+  animation: swimAcrossRight 80s linear infinite;
+}
+
+/* Delfín saltando — arriba a la derecha */
+.creature--dolphin-1 {
+  width: clamp(60px, 8vw, 110px);
+  top: 14%;
+  right: -12%;
+  opacity: 0.22;
+  animation: swimAcrossLeft 50s linear infinite;
+  transform: scaleX(-1);
+}
+
+/* Par de delfines en arco — media derecha */
+.creature--dolphin-2 {
+  width: clamp(70px, 9vw, 130px);
+  top: 64%;
+  left: -14%;
+  opacity: 0.2;
+  animation: swimAcrossRight 60s linear infinite;
+  animation-delay: -25s;
+}
+
+/* Caballito de mar — izquierda media, flotando vertical */
+.creature--seahorse {
+  width: clamp(28px, 3.6vw, 50px);
+  top: 32%;
+  left: 5%;
+  opacity: 0.32;
+  animation: gentleFloat 9s ease-in-out infinite;
+}
+
+/* Pulpo — esquina inferior izquierda */
+.creature--octopus {
+  width: clamp(50px, 7vw, 95px);
+  bottom: 6%;
+  left: 6%;
+  opacity: 0.22;
+  animation: gentleFloat 11s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+/* Pez ornamental — derecha media */
+.creature--fish-ornate {
+  width: clamp(45px, 6vw, 80px);
+  top: 52%;
+  right: 8%;
+  opacity: 0.28;
+  animation: gentleFloat 7s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+/* Pez rayado — atraviesa media */
+.creature--fish-stripes {
+  width: clamp(32px, 4vw, 55px);
+  top: 22%;
+  left: -8%;
+  opacity: 0.28;
+  animation: swimAcrossRight 42s linear infinite;
+  animation-delay: -8s;
+}
+
+/* Medusa — izquierda alta, flota suave */
+.creature--jellyfish {
+  width: clamp(38px, 5vw, 70px);
+  top: 6%;
+  left: 14%;
+  opacity: 0.28;
+  animation: jellyDrift 10s ease-in-out infinite;
+}
+
+/* Coral 1 — abajo derecha */
+.creature--coral-1 {
+  width: clamp(36px, 4.6vw, 65px);
+  bottom: 4%;
+  right: 14%;
+  opacity: 0.26;
+  transform-origin: bottom center;
+  animation: coralSway 8s ease-in-out infinite;
+}
+
+/* Coral 2 — abajo, centro derecha */
+.creature--coral-2 {
+  width: clamp(30px, 3.8vw, 52px);
+  bottom: 7%;
+  right: 34%;
+  opacity: 0.24;
+  transform-origin: bottom center;
+  animation: coralSway 10s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+/* Manta raya — atraviesa abajo a la izquierda */
+.creature--manta {
+  width: clamp(50px, 7vw, 95px);
+  top: 78%;
+  right: -12%;
+  opacity: 0.2;
+  animation: swimAcrossLeft 70s linear infinite;
+  animation-delay: -30s;
+  transform: scaleX(-1);
+}
+
+/* Animaciones */
+@keyframes swimAcrossRight {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(130vw); }
+}
+@keyframes swimAcrossLeft {
+  0%   { transform: scaleX(-1) translateX(0); }
+  100% { transform: scaleX(-1) translateX(130vw); }
+}
+
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+
+@keyframes jellyDrift {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50%      { transform: translateY(-18px) translateX(6px); }
+}
+
+@keyframes coralSway {
+  0%, 100% { transform: rotate(-2.5deg); }
+  50%      { transform: rotate(2.5deg); }
+}
+
+/* Mobile: reducir cantidad de criaturas para no saturar */
+@media (max-width: 768px) {
+  .creature--whale,
+  .creature--manta,
+  .creature--coral-2,
+  .creature--fish-stripes { display: none; }
+
+  .hero__divers {
+    width: 118vw;
+    height: 22rem;
+  }
+
+  .hero__diver {
+    width: clamp(9rem, 36vw, 15rem);
+    opacity: 0.24;
+  }
+
+  .hero__diver--left {
+    transform: translate(-38%, -56%) rotate(-12deg);
+  }
+
+  .hero__diver--right {
+    transform: translate(38%, -42%) scaleX(-1) rotate(11deg);
+  }
+
+  .creature--octopus { opacity: 0.2; }
+  .creature--dolphin-1 { opacity: 0.22; }
+  .creature--dolphin-2 { opacity: 0.18; }
+  .creature--fish-ornate { opacity: 0.25; }
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 1.5rem;
+  animation: heroFadeIn 1.8s var(--ease-out) 0.3s both;
+}
+
+.hero__divers {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: min(1120px, 92vw);
+  height: clamp(18rem, 38vw, 34rem);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero__diver {
+  position: absolute;
+  top: 50%;
+  width: clamp(28rem, 40vw, 50rem);
+  height: auto;
+  opacity: 0.72;
+  filter: saturate(0.86) brightness(0.9) drop-shadow(0 0 28px rgba(127, 184, 212, 0.2));
+  animation: portadaDiverFloat 11s ease-in-out infinite;
+}
+
+.hero__diver--left {
+  left: 0;
+  transform: translate(-68%, -51%) rotate(-8deg);
+}
+
+.hero__diver--right {
+  right: 0;
+  transform: translate(68%, -50%) scaleX(-1) rotate(7deg);
+  animation-delay: -4s;
+}
+
+.hero__eyebrow {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-sans);
+  font-size: var(--fs-eyebrow);
+  font-weight: 400;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--c-aqua-light);
+  display: block;
+  margin-bottom: 2rem;
+}
+
+.hero__title {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: var(--fs-display);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--c-bone);
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 60px rgba(127, 184, 212, 0.25);
+}
+
+.hero__subtitle {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: var(--fs-subtitle);
+  color: var(--c-bone-dim);
+  letter-spacing: 0.05em;
+}
+
+@keyframes heroFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes portadaDiverFloat {
+  0%, 100% { margin-top: 0; }
+  50% { margin-top: -18px; }
+}
+
+@media (max-width: 768px) {
+  .hero__divers {
+    width: 118vw;
+    height: 22rem;
+  }
+
+  .hero__diver {
+    width: clamp(18rem, 70vw, 27rem);
+    opacity: 0.5;
+  }
+
+  .hero__diver--left {
+    transform: translate(-72%, -56%) rotate(-10deg);
+  }
+
+  .hero__diver--right {
+    transform: translate(72%, -42%) scaleX(-1) rotate(10deg);
+  }
+}
+
+.hero__scroll {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  z-index: 2;
+}
+
+.hero__scroll-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--c-bone-faint);
+}
+
+.hero__scroll-line {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--c-bone-faint), transparent);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__scroll-line::after {
+  content: "";
+  position: absolute;
+  top: -30px;
+  left: 0; right: 0;
+  height: 30px;
+  background: linear-gradient(to bottom, transparent, var(--c-aqua-light));
+  animation: scrollDown 2.5s ease-in-out infinite;
+}
+
+@keyframes scrollDown {
+  0%   { top: -30px; opacity: 0; }
+  30%  { opacity: 1; }
+  100% { top: 60px; opacity: 0; }
+}
+
+/* ============================================================
+   SECCIÓN INTRO — Sobre el viaje
+   ============================================================ */
+.intro {
+  padding: clamp(6rem, 12vw, 12rem) clamp(1.5rem, 5vw, 4rem);
+  background: transparent;
+  position: relative;
+}
+
+.intro::after {
+  content: none;
+}
+
+.intro__inner {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.intro__title {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: var(--fs-title);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--c-bone);
+  margin: 1.5rem 0 3rem;
+  max-width: 18ch;
+}
+
+.intro__body p {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: var(--c-bone-dim);
+  margin-bottom: 1.5rem;
+  max-width: 60ch;
+}
+
+.intro__body p:first-letter {
+  font-style: italic;
+  color: var(--c-gold);
+}
+
+/* ============================================================
+   CAPA ZERO — Antes de sumergirse
+   ============================================================ */
+.capa-zero {
+  padding: clamp(6rem, 12vw, 12rem) clamp(1.5rem, 5vw, 4rem);
+  background: transparent;
+  position: relative;
+}
+
+.capa-zero__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.capa-zero__inner .eyebrow {
+  margin-bottom: 1rem;
+}
+
+.capa-zero__inner .section-title {
+  margin-bottom: 2rem;
+  max-width: 18ch;
+}
+
+.capa-zero__inner .section-lead {
+  margin-bottom: clamp(4rem, 8vw, 7rem);
+  max-width: 50ch;
+}
+
+.equipment-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(3rem, 6vw, 5rem);
+}
+
+@media (min-width: 900px) {
+  .equipment-grid {
+    grid-template-columns: 1fr 1.5fr;
+    gap: 6rem;
+  }
+}
+
+.equipment-block__title {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 1.75rem;
+  letter-spacing: 0.02em;
+  color: var(--c-bone);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--c-bone-line);
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.equipment-block__title .roman {
+  font-size: 1.3rem;
+}
+
+.equipment-list li {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  column-gap: 1.25rem;
+  row-gap: 0.15rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--c-bone-line);
+  align-items: center;
+}
+
+.equipment-list li > .eq-icon { grid-row: span 2; }
+
+@media (min-width: 600px) {
+  .equipment-list li {
+    grid-template-columns: 64px 1fr 1.5fr;
+    column-gap: 1.5rem;
+    align-items: center;
+  }
+  .equipment-list li > .eq-icon { grid-row: span 1; }
+}
+
+.equipment-list__name {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.05rem;
+  color: var(--c-bone);
+  line-height: 1.3;
+}
+
+.equipment-list__desc {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.92rem;
+  color: var(--c-bone-dim);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   ICONOS SVG DEL EQUIPO — Estilo manual de buceo
+   ============================================================ */
+.eq-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  color: var(--c-aqua-light);
+  opacity: 0.85;
+  flex-shrink: 0;
+}
+
+@media (min-width: 600px) {
+  .eq-icon { width: 64px; height: 64px; }
+}
+
+.eq-icon svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Animaciones base */
+.eq-icon--sway svg    { animation: iconSway 5s ease-in-out infinite; transform-origin: 50% 70%; }
+.eq-icon--bob svg     { animation: iconBob 4s ease-in-out infinite; }
+.eq-icon--breathe svg { animation: iconBreathe 4.5s ease-in-out infinite; transform-origin: center; }
+.eq-icon--pulse svg   { animation: iconPulse 3.5s ease-in-out infinite; }
+.eq-icon--radio svg   { animation: iconBreathe 5s ease-in-out infinite; transform-origin: center; }
+.eq-icon--gps svg     { animation: iconPulse 5s ease-in-out infinite; }
+
+@keyframes iconSway {
+  0%, 100% { transform: rotate(-3deg); }
+  50%      { transform: rotate(3deg); }
+}
+@keyframes iconBob {
+  0%, 100% { transform: translateY(-2px); }
+  50%      { transform: translateY(2px); }
+}
+@keyframes iconBreathe {
+  0%, 100% { transform: scale(0.97); }
+  50%      { transform: scale(1.03); }
+}
+@keyframes iconPulse {
+  0%, 100% { opacity: 0.75; }
+  50%      { opacity: 1; }
+}
+
+/* Ondas del radio saliendo */
+.radio-wave {
+  animation: radioWave 2.2s ease-out infinite;
+  transform-origin: 46px 10px;
+}
+.radio-wave + .radio-wave { animation-delay: 0.8s; }
+
+@keyframes radioWave {
+  0%   { opacity: 0; transform: scale(0.6); }
+  40%  { opacity: 0.8; }
+  100% { opacity: 0; transform: scale(1.3); }
+}
+
+/* Ping del GPS (ondas radar) */
+.gps-ping {
+  transform-origin: 30px 30px;
+  animation: gpsPing 3s ease-out infinite;
+}
+.gps-ping--1 { animation-delay: 0s;   }
+.gps-ping--2 { animation-delay: 0.5s; }
+.gps-ping--3 { animation-delay: 1s;   }
+
+@keyframes gpsPing {
+  0%   { opacity: 0; transform: scale(0.4); }
+  30%  { opacity: 0.9; }
+  100% { opacity: 0; transform: scale(1.2); }
+}
+
+/* ============================================================
+   CAPAS — Estructura común
+   ============================================================ */
+.capa {
+  padding: clamp(6rem, 12vw, 12rem) clamp(1.5rem, 5vw, 4rem);
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+}
+
+.capa::before {
+  content: none;
+}
+
+.capa::after {
+  content: none;
+}
+
+.capa__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 3;
+}
+
+.capa__header {
+  text-align: center;
+  margin-bottom: clamp(4rem, 8vw, 7rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.capa__header .eyebrow { color: var(--c-aqua-light); }
+
+.capa__title {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  color: var(--c-bone);
+  max-width: 18ch;
+}
+
+.capa__depth {
+  font-family: var(--font-sans);
+  font-size: var(--fs-small);
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  padding: 0.5rem 1.25rem;
+  border: 1px solid var(--c-bone-line);
+  border-radius: var(--radius);
+  margin-top: 0.5rem;
+}
+
+.capa__lead {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: var(--fs-subtitle);
+  color: var(--c-bone-dim);
+  max-width: 50ch;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   BURBUJAS
+   ============================================================ */
+.bubbles {
+  --base: clamp(72px, 8.5vw, 102px);
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  height: clamp(620px, 110vw, 720px);
+}
+
+@media (min-width: 600px) {
+  .bubbles { height: 600px; }
+}
+@media (min-width: 900px) {
+  .bubbles { height: 640px; }
+}
+
+.bubble {
+  --bubble-size: var(--base);
+  --drift: 2px;
+  width: var(--bubble-size);
+  height: var(--bubble-size);
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(245, 241, 234, 0.32);
+  background: radial-gradient(circle at 30% 30%, rgba(127, 184, 212, 0.2) 0%, rgba(127, 184, 212, 0.04) 50%, transparent 100%);
+  color: var(--c-bone);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  transition: border-color 0.4s var(--ease), box-shadow 0.5s var(--ease);
+  animation: bubbleFloat ease-in-out infinite;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+/* Dispersión libre en el espacio (porcentajes del contenedor)
+   Cada capa tiene su propio patrón de distribución, tamaños y ritmo de flotación */
+
+/* ━━━ CAPA I — Superficie · dispersión equilibrada, ritmo medio (sol) ━━━ */
+.capa--1 .bubble:nth-child(1)  { top:  4%; left:  4%; --bubble-size: calc(var(--base) * 1.05); --drift:  3px; animation-duration: 5.5s; animation-delay: 0s; }
+.capa--1 .bubble:nth-child(2)  { top: 14%; left: 28%; --bubble-size: calc(var(--base) * 0.9);  --drift: -2px; animation-duration: 6.4s; animation-delay: 0.4s; }
+.capa--1 .bubble:nth-child(3)  { top:  7%; left: 50%; --bubble-size: calc(var(--base) * 1.0);  --drift:  2px; animation-duration: 5.8s; animation-delay: 0.8s; }
+.capa--1 .bubble:nth-child(4)  { top: 20%; left: 72%; --bubble-size: calc(var(--base) * 0.96); --drift: -3px; animation-duration: 7.1s; animation-delay: 0.2s; }
+.capa--1 .bubble:nth-child(5)  { top: 32%; left: 12%; --bubble-size: calc(var(--base) * 1.04); --drift:  2px; animation-duration: 6.0s; animation-delay: 0.6s; }
+.capa--1 .bubble:nth-child(6)  { top: 36%; left: 38%; --bubble-size: calc(var(--base) * 0.92); --drift: -2px; animation-duration: 5.5s; animation-delay: 1s; }
+.capa--1 .bubble:nth-child(7)  { top: 38%; left: 62%; --bubble-size: calc(var(--base) * 1.08); --drift:  3px; animation-duration: 6.8s; animation-delay: 0.3s; }
+.capa--1 .bubble:nth-child(8)  { top: 56%; left: 18%; --bubble-size: calc(var(--base) * 0.88); --drift: -2px; animation-duration: 5.4s; animation-delay: 0.7s; }
+.capa--1 .bubble:nth-child(9)  { top: 60%; left: 48%; --bubble-size: calc(var(--base) * 1.06); --drift:  2px; animation-duration: 7.3s; animation-delay: 0.1s; }
+.capa--1 .bubble:nth-child(10) { top: 76%; left: 70%; --bubble-size: calc(var(--base) * 0.94); --drift: -3px; animation-duration: 6.2s; animation-delay: 0.9s; }
+
+/* ━━━ CAPA II — Arrecife · agrupaciones tipo colonia, ritmo ágil (cardúmenes) ━━━ */
+.capa--2 .bubble:nth-child(1)  { top:  4%; left: 14%; --bubble-size: calc(var(--base) * 1.0);  --drift:  3px; animation-duration: 5.0s; animation-delay: 0s; }
+.capa--2 .bubble:nth-child(2)  { top: 10%; left: 32%; --bubble-size: calc(var(--base) * 0.86); --drift:  2px; animation-duration: 4.5s; animation-delay: 0.5s; }
+.capa--2 .bubble:nth-child(3)  { top: 18%; left: 56%; --bubble-size: calc(var(--base) * 0.94); --drift: -3px; animation-duration: 5.4s; animation-delay: 0.3s; }
+.capa--2 .bubble:nth-child(4)  { top: 22%; left: 74%; --bubble-size: calc(var(--base) * 1.08); --drift: -2px; animation-duration: 4.2s; animation-delay: 0.7s; }
+.capa--2 .bubble:nth-child(5)  { top: 36%; left:  6%; --bubble-size: calc(var(--base) * 0.9);  --drift:  2px; animation-duration: 4.8s; animation-delay: 0.2s; }
+.capa--2 .bubble:nth-child(6)  { top: 42%; left: 24%; --bubble-size: calc(var(--base) * 1.04); --drift:  3px; animation-duration: 5.6s; animation-delay: 0.9s; }
+.capa--2 .bubble:nth-child(7)  { top: 38%; left: 50%; --bubble-size: calc(var(--base) * 0.92); --drift: -2px; animation-duration: 4.0s; animation-delay: 0.4s; }
+.capa--2 .bubble:nth-child(8)  { top: 58%; left: 32%; --bubble-size: calc(var(--base) * 0.98); --drift:  2px; animation-duration: 5.8s; animation-delay: 0.6s; }
+.capa--2 .bubble:nth-child(9)  { top: 64%; left: 56%; --bubble-size: calc(var(--base) * 1.06); --drift: -3px; animation-duration: 5.2s; animation-delay: 0.1s; }
+.capa--2 .bubble:nth-child(10) { top: 74%; left: 72%; --bubble-size: calc(var(--base) * 0.88); --drift:  2px; animation-duration: 4.4s; animation-delay: 0.8s; }
+
+/* ━━━ CAPA III — Fondo arenoso · más horizontal y bajo, ritmo lento (anclaje) ━━━ */
+.capa--3 .bubble:nth-child(1)  { top: 16%; left:  8%; --bubble-size: calc(var(--base) * 0.96); --drift:  2px; animation-duration: 8.5s; animation-delay: 0s; }
+.capa--3 .bubble:nth-child(2)  { top: 22%; left: 28%; --bubble-size: calc(var(--base) * 1.05); --drift: -2px; animation-duration: 9.0s; animation-delay: 0.4s; }
+.capa--3 .bubble:nth-child(3)  { top: 18%; left: 48%; --bubble-size: calc(var(--base) * 0.9);  --drift:  2px; animation-duration: 8.0s; animation-delay: 0.8s; }
+.capa--3 .bubble:nth-child(4)  { top: 26%; left: 68%; --bubble-size: calc(var(--base) * 1.02); --drift: -2px; animation-duration: 9.5s; animation-delay: 0.2s; }
+.capa--3 .bubble:nth-child(5)  { top: 42%; left: 14%; --bubble-size: calc(var(--base) * 1.06); --drift:  1px; animation-duration: 7.5s; animation-delay: 0.6s; }
+.capa--3 .bubble:nth-child(6)  { top: 48%; left: 36%; --bubble-size: calc(var(--base) * 0.88); --drift: -1px; animation-duration: 8.8s; animation-delay: 1s; }
+.capa--3 .bubble:nth-child(7)  { top: 46%; left: 58%; --bubble-size: calc(var(--base) * 1.0);  --drift:  2px; animation-duration: 8.2s; animation-delay: 0.3s; }
+.capa--3 .bubble:nth-child(8)  { top: 62%; left: 24%; --bubble-size: calc(var(--base) * 0.94); --drift: -2px; animation-duration: 9.0s; animation-delay: 0.7s; }
+.capa--3 .bubble:nth-child(9)  { top: 68%; left: 50%; --bubble-size: calc(var(--base) * 1.08); --drift:  1px; animation-duration: 7.8s; animation-delay: 0.1s; }
+.capa--3 .bubble:nth-child(10) { top: 76%; left: 70%; --bubble-size: calc(var(--base) * 0.92); --drift: -2px; animation-duration: 8.5s; animation-delay: 0.9s; }
+
+/* ━━━ CAPA IV — Aguas abiertas · espacio amplio entre burbujas, ritmo majestuoso ━━━ */
+.capa--4 .bubble:nth-child(1)  { top:  2%; left: 10%; --bubble-size: calc(var(--base) * 1.05); --drift:  4px; animation-duration: 10.0s; animation-delay: 0s; }
+.capa--4 .bubble:nth-child(2)  { top: 10%; left: 46%; --bubble-size: calc(var(--base) * 0.9);  --drift: -3px; animation-duration: 11.0s; animation-delay: 0.6s; }
+.capa--4 .bubble:nth-child(3)  { top: 16%; left: 74%; --bubble-size: calc(var(--base) * 1.02); --drift:  3px; animation-duration: 9.5s;  animation-delay: 0.3s; }
+.capa--4 .bubble:nth-child(4)  { top: 30%; left: 24%; --bubble-size: calc(var(--base) * 0.96); --drift: -4px; animation-duration: 12.0s; animation-delay: 0.8s; }
+.capa--4 .bubble:nth-child(5)  { top: 36%; left: 60%; --bubble-size: calc(var(--base) * 1.08); --drift:  3px; animation-duration: 10.5s; animation-delay: 0.2s; }
+.capa--4 .bubble:nth-child(6)  { top: 48%; left:  6%; --bubble-size: calc(var(--base) * 0.94); --drift:  4px; animation-duration: 11.5s; animation-delay: 0.5s; }
+.capa--4 .bubble:nth-child(7)  { top: 54%; left: 42%; --bubble-size: calc(var(--base) * 1.04); --drift: -3px; animation-duration: 9.0s;  animation-delay: 0.9s; }
+.capa--4 .bubble:nth-child(8)  { top: 58%; left: 72%; --bubble-size: calc(var(--base) * 0.88); --drift:  4px; animation-duration: 11.0s; animation-delay: 0.4s; }
+.capa--4 .bubble:nth-child(9)  { top: 72%; left: 22%; --bubble-size: calc(var(--base) * 1.0);  --drift: -3px; animation-duration: 10.0s; animation-delay: 0.7s; }
+.capa--4 .bubble:nth-child(10) { top: 80%; left: 56%; --bubble-size: calc(var(--base) * 0.92); --drift:  3px; animation-duration: 12.0s; animation-delay: 0.1s; }
+
+/* ━━━ CAPA V — Laberintos · asimetría caótica, ritmos irregulares (sombra) ━━━ */
+.capa--5 .bubble:nth-child(1)  { top:  6%; left: 22%; --bubble-size: calc(var(--base) * 1.08); --drift:  3px; animation-duration: 4.5s; animation-delay: 0s; }
+.capa--5 .bubble:nth-child(2)  { top:  3%; left: 54%; --bubble-size: calc(var(--base) * 0.86); --drift: -4px; animation-duration: 8.5s; animation-delay: 0.7s; }
+.capa--5 .bubble:nth-child(3)  { top: 18%; left:  6%; --bubble-size: calc(var(--base) * 0.94); --drift:  2px; animation-duration: 6.0s; animation-delay: 0.3s; }
+.capa--5 .bubble:nth-child(4)  { top: 24%; left: 70%; --bubble-size: calc(var(--base) * 1.04); --drift: -3px; animation-duration: 5.5s; animation-delay: 1.1s; }
+.capa--5 .bubble:nth-child(5)  { top: 38%; left: 36%; --bubble-size: calc(var(--base) * 0.9);  --drift:  4px; animation-duration: 7.0s; animation-delay: 0.2s; }
+.capa--5 .bubble:nth-child(6)  { top: 42%; left: 62%; --bubble-size: calc(var(--base) * 1.02); --drift: -2px; animation-duration: 4.8s; animation-delay: 0.9s; }
+.capa--5 .bubble:nth-child(7)  { top: 52%; left: 14%; --bubble-size: calc(var(--base) * 0.88); --drift:  3px; animation-duration: 9.0s; animation-delay: 0.5s; }
+.capa--5 .bubble:nth-child(8)  { top: 56%; left: 74%; --bubble-size: calc(var(--base) * 1.06); --drift: -3px; animation-duration: 6.5s; animation-delay: 0.1s; }
+.capa--5 .bubble:nth-child(9)  { top: 68%; left: 30%; --bubble-size: calc(var(--base) * 0.96); --drift:  2px; animation-duration: 5.0s; animation-delay: 0.8s; }
+.capa--5 .bubble:nth-child(10) { top: 76%; left: 56%; --bubble-size: calc(var(--base) * 1.0);  --drift: -4px; animation-duration: 7.5s; animation-delay: 0.4s; }
+
+@keyframes bubbleFloat {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(var(--drift, 2px), -10px); }
+}
+
+/* Override del fade-in para que las burbujas solo aparezcan con opacidad
+   (sin transform translateY que rompa el flotado) */
+.bubble.fade-in {
+  transform: none;
+  transition: opacity 1.2s var(--ease-out);
+  transition-delay: var(--delay, 0s);
+}
+.bubble.fade-in.is-visible {
+  opacity: 1;
+}
+
+.bubble__word {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(0.74rem, 1vw, 0.92rem);
+  letter-spacing: 0.03em;
+  text-align: center;
+  line-height: 1.15;
+  pointer-events: none;
+}
+
+.bubble::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 28%, rgba(255, 255, 255, 0.22) 0%, transparent 38%);
+  pointer-events: none;
+}
+
+.bubble:focus-visible {
+  outline: 1px solid var(--c-gold);
+  outline-offset: 4px;
+}
+
+.bubble:active { transition-duration: inherit; }
+
+/* Bioluminiscencia creciente en capas profundas */
+.capa--3 .bubble {
+  border-color: rgba(127, 184, 212, 0.5);
+  box-shadow: 0 0 18px rgba(127, 184, 212, 0.12), inset 0 0 18px rgba(127, 184, 212, 0.06);
+}
+
+.capa--4 .bubble {
+  border-color: rgba(127, 184, 212, 0.6);
+  box-shadow: 0 0 25px rgba(127, 184, 212, 0.18), inset 0 0 22px rgba(127, 184, 212, 0.1);
+}
+
+.capa--5 .bubble {
+  border-color: rgba(127, 184, 212, 0.7);
+  box-shadow: 0 0 35px rgba(127, 184, 212, 0.25), inset 0 0 28px rgba(127, 184, 212, 0.14);
+}
+
+/* ============================================================
+   DEDICATORIA — UNA PALABRA PARA CARO
+   ============================================================ */
+.dedicatoria {
+  position: relative;
+  min-height: 100vh;
+  padding: clamp(7rem, 14vw, 13rem) clamp(1.5rem, 5vw, 4rem);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background: transparent;
+  overflow: hidden;
+}
+
+.dedicatoria::before {
+  content: none;
+}
+
+.dedicatoria__inner {
+  width: min(940px, 100%);
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.dedicatoria__line {
+  display: block;
+  width: 1px;
+  height: clamp(4.5rem, 10vw, 7rem);
+  margin: 0 auto clamp(2.5rem, 5vw, 4rem);
+  background: linear-gradient(to bottom, transparent, rgba(201, 169, 97, 0.75), transparent);
+  opacity: 0;
+  transform: translateY(-18px);
+  animation: dedicatoriaLine 2.4s var(--ease-out) forwards;
+}
+
+.dedicatoria__header {
+  margin-bottom: clamp(4rem, 8vw, 6rem);
+}
+
+.dedicatoria__eyebrow,
+.dedicatoria__wall-title {
+  font-family: var(--font-sans);
+  font-size: var(--fs-eyebrow);
+  font-weight: 400;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: rgba(201, 169, 97, 0.78);
+}
+
+.dedicatoria__title {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 0.95;
+  color: var(--c-bone);
+  margin: clamp(1.25rem, 3vw, 2.25rem) auto clamp(1.75rem, 4vw, 3rem);
+  text-shadow: 0 0 55px rgba(127, 184, 212, 0.12);
+}
+
+.dedicatoria__intro {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.18rem, 2.2vw, 1.65rem);
+  line-height: 1.65;
+  color: rgba(245, 241, 234, 0.76);
+  max-width: 33rem;
+  margin: 0 auto;
+}
+
+.dedicatoria__form {
+  width: min(720px, 100%);
+  margin: 0 auto;
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+}
+
+.dedicatoria__form.is-hiding {
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+}
+
+.dedicatoria__composer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(1.25rem, 3vw, 2rem);
+  align-items: end;
+}
+
+.dedicatoria__word-wrap {
+  display: block;
+}
+
+.dedicatoria .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.dedicatoria__input {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid rgba(245, 241, 234, 0.28);
+  border-radius: 0;
+  background: transparent;
+  color: var(--c-bone);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(2.2rem, 6vw, 4.6rem);
+  line-height: 1.15;
+  text-align: center;
+  padding: 0 0 0.55rem;
+  outline: none;
+  transition: border-color 0.6s var(--ease), color 0.6s var(--ease);
+}
+
+.dedicatoria__input::placeholder {
+  color: rgba(245, 241, 234, 0.22);
+}
+
+.dedicatoria__input:focus {
+  border-color: rgba(201, 169, 97, 0.72);
+}
+
+.dedicatoria__animal {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 0.55rem;
+}
+
+.dedicatoria__circle {
+  width: clamp(56px, 7vw, 72px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 169, 97, 0.58);
+  background: transparent;
+  color: var(--c-bone);
+  display: grid;
+  place-items: center;
+  transition: opacity 0.45s var(--ease), border-color 0.45s var(--ease);
+}
+
+.dedicatoria__circle:hover,
+.dedicatoria__circle:focus-visible {
+  opacity: 0.92;
+  border-color: rgba(201, 169, 97, 0.92);
+  outline: none;
+}
+
+.dedicatoria__emoji-preview {
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  line-height: 1;
+}
+
+.dedicatoria__emoji-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0.01;
+  pointer-events: none;
+  border: 0;
+  background: transparent;
+}
+
+.dedicatoria__emoji-picker {
+  position: absolute;
+  top: calc(100% + 1.15rem);
+  right: 50%;
+  width: min(18rem, 78vw);
+  padding: 0.9rem;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.45rem;
+  border: 1px solid rgba(201, 169, 97, 0.24);
+  border-radius: 999px;
+  background: rgba(2, 7, 17, 0.92);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.32), inset 0 0 24px rgba(127, 184, 212, 0.05);
+  backdrop-filter: blur(16px);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(50%, -8px);
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+  z-index: 6;
+}
+
+.dedicatoria__emoji-picker.is-open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(50%, 0);
+}
+
+.dedicatoria__emoji-choice {
+  width: 2.35rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--c-bone);
+  font-size: 1.25rem;
+  transition: background 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.dedicatoria__emoji-choice:hover,
+.dedicatoria__emoji-choice:focus-visible,
+.dedicatoria__emoji-choice.is-selected {
+  background: rgba(201, 169, 97, 0.16);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.dedicatoria__animal-label,
+.dedicatoria__microcopy,
+.dedicatoria__submit {
+  font-family: var(--font-sans);
+  font-weight: 300;
+}
+
+.dedicatoria__animal-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(245, 241, 234, 0.42);
+}
+
+.dedicatoria__microcopy {
+  margin: clamp(1.25rem, 3vw, 1.8rem) auto 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: rgba(245, 241, 234, 0.42);
+}
+
+.dedicatoria__submit {
+  position: relative;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  color: rgba(245, 241, 234, 0.78);
+  font-size: 0.75rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  padding-bottom: 0.65rem;
+}
+
+.dedicatoria__submit::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  transform: translateX(-50%);
+  background: rgba(201, 169, 97, 0.42);
+  transition: width 0.45s var(--ease), opacity 0.45s var(--ease);
+}
+
+.dedicatoria__submit:disabled {
+  opacity: 0.26;
+  cursor: default;
+}
+
+.dedicatoria__submit:not(:disabled):hover::after,
+.dedicatoria__submit:not(:disabled):focus-visible::after {
+  width: 116%;
+  opacity: 1;
+}
+
+.dedicatoria__result {
+  min-height: clamp(8rem, 16vw, 12rem);
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.dedicatoria__visitor-bubble,
+.tributo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  border: 1px solid rgba(201, 169, 97, 0.46);
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 25%, rgba(201, 169, 97, 0.18), rgba(127, 184, 212, 0.05) 58%, transparent);
+  color: var(--c-bone);
+  box-shadow: 0 0 32px rgba(201, 169, 97, 0.12), inset 0 0 24px rgba(127, 184, 212, 0.08);
+  animation: dedicatoriaFloat 8s ease-in-out infinite;
+}
+
+.dedicatoria__visitor-bubble {
+  min-width: clamp(9rem, 28vw, 14rem);
+  min-height: clamp(4.5rem, 10vw, 6.4rem);
+  padding: 1.2rem 1.65rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  opacity: 0;
+  transform: translateY(12px) scale(0.96);
+}
+
+.dedicatoria__visitor-bubble.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: opacity 1s var(--ease-out), transform 1s var(--ease-out);
+}
+
+.dedicatoria__bubble-emoji,
+.tributo__emoji {
+  font-family: var(--font-sans);
+  font-style: normal;
+}
+
+.dedicatoria__confirmation {
+  min-height: 1.8rem;
+  margin: 0;
+  color: rgba(201, 169, 97, 0.78);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+}
+
+.dedicatoria__confirmation.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dedicatoria__wall {
+  margin-top: clamp(4rem, 9vw, 7rem);
+}
+
+.dedicatoria__wall-title {
+  color: rgba(245, 241, 234, 0.46);
+}
+
+.dedicatoria__empty {
+  margin: clamp(2rem, 5vw, 3.5rem) 0 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: rgba(245, 241, 234, 0.46);
+}
+
+.dedicatoria__empty.is-hidden {
+  display: none;
+}
+
+.dedicatoria__tributos {
+  position: relative;
+  min-height: 15rem;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.tributo {
+  position: absolute;
+  min-width: 6rem;
+  min-height: 3rem;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  cursor: pointer;
+  animation-duration: var(--tribute-duration, 9s);
+  animation-delay: var(--tribute-delay, 0s);
+  transition: border-color 0.35s var(--ease), box-shadow 0.35s var(--ease), padding 0.35s var(--ease);
+}
+
+.tributo.is-editing {
+  padding-right: 2.65rem;
+  border-color: rgba(201, 169, 97, 0.72);
+  box-shadow: 0 0 42px rgba(201, 169, 97, 0.16), inset 0 0 24px rgba(127, 184, 212, 0.08);
+}
+
+.tributo__remove {
+  position: absolute;
+  top: 50%;
+  right: 0.56rem;
+  width: 1.45rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: rgba(245, 241, 234, 0.76);
+  border: 1px solid rgba(201, 169, 97, 0.42);
+  background: rgba(2, 7, 17, 0.68);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%) scale(0.86);
+  transition: opacity 0.28s var(--ease), transform 0.28s var(--ease), border-color 0.28s var(--ease);
+}
+
+.tributo.is-editing .tributo__remove {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-50%) scale(1);
+}
+
+.tributo__remove:hover,
+.tributo__remove:focus-visible {
+  border-color: rgba(201, 169, 97, 0.8);
+  outline: none;
+}
+
+@keyframes dedicatoriaLine {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes dedicatoriaFloat {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(7px, -13px, 0); }
+}
+
+@media (max-width: 680px) {
+  .dedicatoria {
+    padding: 6rem 1.25rem 7rem;
+  }
+
+  .dedicatoria__composer {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .dedicatoria__input {
+    font-size: clamp(2.2rem, 13vw, 3.4rem);
+  }
+
+  .dedicatoria__emoji-picker {
+    border-radius: 1.8rem;
+  }
+
+  .dedicatoria__animal {
+    margin-top: 0.5rem;
+  }
+
+  .dedicatoria__tributos {
+    min-height: 20rem;
+  }
+
+  .tributo {
+    position: relative;
+    left: auto !important;
+    top: auto !important;
+    margin: 0.65rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dedicatoria__line,
+  .dedicatoria__visitor-bubble,
+  .tributo {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   CIERRE
+   ============================================================ */
+.cierre {
+  padding: clamp(8rem, 15vw, 14rem) clamp(1.5rem, 5vw, 4rem);
+  background: transparent;
+  text-align: center;
+  position: relative;
+}
+
+.cierre::before {
+  content: none;
+}
+
+.cierre__inner {
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 3;
+}
+
+.cierre__title {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-style: italic;
+  font-size: var(--fs-title);
+  line-height: 1.2;
+  color: var(--c-bone);
+  margin: 1.5rem 0 3rem;
+}
+
+.cierre__body p {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: var(--c-bone-dim);
+  margin-bottom: 1.5rem;
+  max-width: 55ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  padding: 3rem clamp(1.5rem, 5vw, 4rem);
+  background: var(--c-ocean-black);
+  border-top: 1px solid var(--c-bone-line);
+}
+
+.footer__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: space-between;
+}
+
+@media (min-width: 700px) {
+  .footer__inner {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+}
+
+.footer__col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.footer__brand {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--c-bone);
+}
+
+.footer__tagline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--c-bone-faint);
+}
+
+.footer__meta {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--c-bone-faint);
+}
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s var(--ease), visibility 0.4s var(--ease);
+}
+
+.modal.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 13, 26, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.modal__card {
+  position: relative;
+  z-index: 1;
+  max-width: 540px;
+  width: 100%;
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(2rem, 4vw, 3.5rem);
+  background: linear-gradient(135deg, rgba(13, 36, 64, 0.95) 0%, rgba(8, 22, 40, 0.95) 100%);
+  border: 1px solid rgba(201, 169, 97, 0.3);
+  border-radius: 2px;
+  text-align: left;
+  transform: scale(0.95) translateY(20px);
+  opacity: 0;
+  transition: transform 0.5s var(--ease-out), opacity 0.4s var(--ease);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 80px rgba(127, 184, 212, 0.1);
+}
+
+.modal.is-open .modal__card {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+.modal__close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--c-bone-dim);
+  border-radius: 50%;
+  transition: all 0.3s var(--ease);
+}
+
+.modal__close:hover {
+  color: var(--c-gold);
+  background: rgba(201, 169, 97, 0.08);
+  transform: rotate(90deg);
+}
+
+.modal__capa {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--c-gold);
+  display: block;
+  margin-bottom: 1.25rem;
+}
+
+.modal__word {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--c-bone);
+  margin-bottom: 1.5rem;
+}
+
+.modal__divider {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--c-gold);
+  margin-bottom: 1.5rem;
+}
+
+.modal__creature {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.15rem;
+  color: var(--c-aqua-light);
+  margin-bottom: 0.75rem;
+}
+
+.modal__meaning {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--c-bone-dim);
+}
+
+/* ============================================================
+   FADE-IN AL ENTRAR EN VIEWPORT
+   ============================================================ */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s var(--ease-out), transform 1s var(--ease-out);
+}
+
+.fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger para las burbujas */
+.bubble.fade-in { transition-delay: var(--delay, 0s); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* Tablet */
+@media (max-width: 900px) {
+  .depth-indicator { display: none; }
+  .nav__links { gap: 1.25rem; }
+  .sound-toggle { padding: 0.5rem 0.85rem; }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .nav { padding: 1rem 1.25rem; }
+  .nav__brand { font-size: 0.9rem; }
+  .nav__links { gap: 0.85rem; }
+  .nav__links a { font-size: 0.7rem; letter-spacing: 0.08em; }
+
+  .hero__eyebrow { font-size: 0.65rem; letter-spacing: 0.3em; }
+  .hero__title { letter-spacing: 0.08em; }
+
+  .equipment-block__title { font-size: 1.4rem; }
+
+  .modal__card { padding: 2.5rem 1.75rem; }
+  .modal__close { top: 0.75rem; right: 0.75rem; }
+
+  .sound-toggle__label { display: none; }
+  .sound-toggle { padding: 0.6rem; }
+}
+
+/* ============================================================
+   PRÓLOGO — EL PUNTO DE PARTIDA
+   Escena cinematográfica SVG previa al hero
+   ============================================================ */
+.prologo {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: transparent;
+}
+
+.prologo::after {
+  content: none;
+  display: none;
+}
+
+.prologo__svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0.75;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 46%, rgba(0, 0, 0, 0.42) 68%, transparent 96%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 46%, rgba(0, 0, 0, 0.42) 68%, transparent 96%);
+}
+
+.prologo__svg > rect {
+  fill: transparent;
+}
+
+.prologo__svg > rect[y="540"],
+.prologo__svg > rect[y="538"],
+.prologo__svg > path[fill="#050d1a"],
+.prologo__svg .island-main > path,
+.prologo__svg .island-main > ellipse,
+.prologo__svg .waves {
+  opacity: 0;
+}
+
+.prologo__overlay {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(7rem, 12vh, 9rem) clamp(1.5rem, 6vw, 4rem) clamp(2.5rem, 5vh, 4rem);
+  pointer-events: none;
+}
+
+.prologo__text {
+  max-width: min(920px, 86vw);
+  text-align: center;
+  color: var(--c-bone);
+  pointer-events: auto;
+  transform: translateY(-4vh);
+}
+
+.prologo__eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--fs-eyebrow);
+  font-weight: 400;
+  letter-spacing: 0.52em;
+  text-transform: uppercase;
+  color: var(--c-aqua-light);
+  display: block;
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.prologo__quote {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(3rem, 8vw, 7.5rem);
+  line-height: 0.95;
+  color: var(--c-bone);
+  text-shadow: 0 0 70px rgba(127, 184, 212, 0.24), 0 2px 35px rgba(5, 13, 26, 0.7);
+}
+
+.prologo__quote em {
+  font-style: italic;
+  color: var(--c-bone-dim);
+  font-size: 0.48em;
+  line-height: 1.2;
+}
+
+.prologo__scroll {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(2rem, 7vh, 4.5rem);
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  pointer-events: auto;
+}
+
+.prologo__scroll-label {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--c-bone-faint);
+}
+
+.prologo__scroll-line {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--c-bone-faint), transparent);
+  position: relative;
+  overflow: hidden;
+}
+
+.prologo__scroll-line::after {
+  content: "";
+  position: absolute;
+  top: -30px;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: linear-gradient(to bottom, transparent, var(--c-aqua-light));
+  animation: scrollDown 2.5s ease-in-out infinite;
+}
+
+/* Capa de "sumergirse" que crece al hacer scroll */
+.prologo__submerge {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  background: transparent;
+  pointer-events: none;
+  z-index: 3;
+  will-change: height;
+}
+
+/* ----------- Animaciones del SVG del prólogo ----------- */
+
+/* Gaviotas — vuelo horizontal lento */
+.gull-1 { animation: gullFly 18s linear infinite; }
+.gull-2 { animation: gullFly 24s linear infinite; animation-delay: -4s; }
+.gull-3 { animation: gullFly 20s linear infinite; animation-delay: -10s; }
+.gull-4 { animation: gullFly 26s linear infinite; animation-delay: -7s; }
+.gull-5 { animation: gullFly 22s linear infinite; animation-delay: -14s; }
+.gull-6 { animation: gullFly 21s linear infinite; animation-delay: -2s; }
+
+@keyframes gullFly {
+  0%   { transform: translateX(-300px); opacity: 0; }
+  10%  { opacity: 0.85; }
+  90%  { opacity: 0.55; }
+  100% { transform: translateX(1300px); opacity: 0; }
+}
+
+/* Nubes — deriva horizontal muy lenta */
+.cloud-1 { animation: cloudDrift 80s ease-in-out infinite; }
+.cloud-2 { animation: cloudDrift 100s ease-in-out infinite reverse; }
+.cloud-3 { animation: cloudDrift 90s ease-in-out infinite; animation-delay: -20s; }
+.cloud-4 { animation: cloudDrift 110s ease-in-out infinite reverse; }
+.cloud-5 { animation: cloudDrift 95s ease-in-out infinite; animation-delay: -30s; }
+
+@keyframes cloudDrift {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(30px); }
+}
+
+/* Olas — oscilación horizontal mínima */
+.wave-1 { animation: waveDrift 16s ease-in-out infinite; }
+.wave-2 { animation: waveDrift 20s ease-in-out infinite; animation-delay: -2s; }
+.wave-3 { animation: waveDrift 18s ease-in-out infinite; animation-delay: -5s; }
+.wave-4 { animation: waveDrift 22s ease-in-out infinite; animation-delay: -3s; }
+.wave-5 { animation: waveDrift 26s ease-in-out infinite; animation-delay: -8s; }
+
+@keyframes waveDrift {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(8px); }
+}
+
+/* Lancha — balanceo suave */
+.boat {
+  transform-origin: 830px 740px;
+  animation: boatRock 7s ease-in-out infinite;
+}
+
+@keyframes boatRock {
+  0%, 100% { transform: rotate(-0.8deg); }
+  50%      { transform: rotate(0.8deg); }
+}
+
+/* Capitán — leve respiración */
+.captain {
+  animation: captainBreathe 4s ease-in-out infinite;
+}
+
+@keyframes captainBreathe {
+  0%, 100% { transform: translate(750px, 660px); }
+  50%      { transform: translate(750px, 659px); }
+}
+
+/* Buzos — respiración vertical sutil */
+.diver-1 { animation: diverBreathe 3.8s ease-in-out infinite; }
+.diver-2 { animation: diverBreathe 4.4s ease-in-out infinite; animation-delay: -1s; }
+.diver-3 { animation: diverBreathe 4.0s ease-in-out infinite; animation-delay: -2s; }
+.diver-4 { animation: diverBreathe 3.6s ease-in-out infinite; animation-delay: -0.6s; }
+
+@keyframes diverBreathe {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-1.5px); }
+}
+
+/* Palmeras — vaivén muy sutil */
+.palm-1 { transform-origin: 145px 630px; animation: palmSway 8s ease-in-out infinite; }
+.palm-2 { transform-origin: 325px 645px; animation: palmSway 10s ease-in-out infinite; animation-delay: -3s; }
+
+@keyframes palmSway {
+  0%, 100% { transform: rotate(-0.6deg); }
+  50%      { transform: rotate(0.6deg); }
+}
+
+/* Partículas atmosféricas — flotación vertical */
+.prologo-particle.p1 { animation: prologoParticleFloat 12s ease-in-out infinite; }
+.prologo-particle.p2 { animation: prologoParticleFloat 16s ease-in-out infinite; animation-delay: -3s; }
+.prologo-particle.p3 { animation: prologoParticleFloat 14s ease-in-out infinite; animation-delay: -5s; }
+.prologo-particle.p4 { animation: prologoParticleFloat 18s ease-in-out infinite; animation-delay: -2s; }
+.prologo-particle.p5 { animation: prologoParticleFloat 13s ease-in-out infinite; animation-delay: -7s; }
+.prologo-particle.p6 { animation: prologoParticleFloat 15s ease-in-out infinite; animation-delay: -4s; }
+.prologo-particle.p7 { animation: prologoParticleFloat 17s ease-in-out infinite; animation-delay: -1s; }
+.prologo-particle.p8 { animation: prologoParticleFloat 14s ease-in-out infinite; animation-delay: -6s; }
+
+@keyframes prologoParticleFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-25px); }
+}
+
+/* Responsive del prólogo */
+@media (max-width: 768px) {
+  .prologo__text {
+    max-width: 92vw;
+    align-self: center;
+    transform: translateY(-2vh);
+  }
+  .prologo__quote {
+    font-size: clamp(2.5rem, 14vw, 4.2rem);
+    line-height: 0.98;
+  }
+  .gull-5, .gull-6 { display: none; }
+  .cloud-4, .cloud-5 { display: none; }
+  .prologo-particle.p5, .prologo-particle.p8 { display: none; }
+}
+
+
+/* ============================================================
+   SEPARACIÓN DE CAPAS — Atmósfera, fauna, partículas y transiciones
+   ============================================================ */
+
+.capa { isolation: isolate; }
+
+.capa__atmosphere {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.capa__inner { position: relative; z-index: 3; }
+
+/* Línea de transición entre capas */
+.capa__transition {
+  display: none;
+}
+
+.capa.is-active .capa__transition { opacity: 0; }
+
+/* ----------- PARTÍCULAS BASE ----------- */
+.capa__particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.capa__particles span {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ----------- CAPA I — Superficie luminosa (partículas ascendentes brillantes) ----------- */
+.capa--1 .capa__atmosphere::before {
+  content: none;
+}
+
+.capa--1 .capa__particles span {
+  background: var(--c-bone);
+  box-shadow: 0 0 6px rgba(127, 184, 212, 0.55);
+  bottom: -10px;
+  animation: rise linear infinite;
+}
+
+.capa--1 .capa__particles span:nth-child(1)  { left:  5%; width: 3px; height: 3px; animation-duration: 14s; animation-delay:  0s; }
+.capa--1 .capa__particles span:nth-child(2)  { left: 14%; width: 4px; height: 4px; animation-duration: 17s; animation-delay: -3s; }
+.capa--1 .capa__particles span:nth-child(3)  { left: 22%; width: 2px; height: 2px; animation-duration: 12s; animation-delay: -6s; }
+.capa--1 .capa__particles span:nth-child(4)  { left: 30%; width: 3px; height: 3px; animation-duration: 16s; animation-delay: -9s; }
+.capa--1 .capa__particles span:nth-child(5)  { left: 38%; width: 4px; height: 4px; animation-duration: 18s; animation-delay: -2s; }
+.capa--1 .capa__particles span:nth-child(6)  { left: 46%; width: 2px; height: 2px; animation-duration: 13s; animation-delay: -5s; }
+.capa--1 .capa__particles span:nth-child(7)  { left: 54%; width: 3px; height: 3px; animation-duration: 15s; animation-delay: -8s; }
+.capa--1 .capa__particles span:nth-child(8)  { left: 62%; width: 5px; height: 5px; animation-duration: 19s; animation-delay: -1s; }
+.capa--1 .capa__particles span:nth-child(9)  { left: 70%; width: 2px; height: 2px; animation-duration: 14s; animation-delay: -7s; }
+.capa--1 .capa__particles span:nth-child(10) { left: 78%; width: 3px; height: 3px; animation-duration: 16s; animation-delay: -10s; }
+.capa--1 .capa__particles span:nth-child(11) { left: 86%; width: 4px; height: 4px; animation-duration: 17s; animation-delay: -4s; }
+.capa--1 .capa__particles span:nth-child(12) { left: 92%; width: 2px; height: 2px; animation-duration: 13s; animation-delay: -11s; }
+.capa--1 .capa__particles span:nth-child(13) { left: 10%; width: 3px; height: 3px; animation-duration: 20s; animation-delay: -8s; }
+.capa--1 .capa__particles span:nth-child(14) { left: 50%; width: 2px; height: 2px; animation-duration: 18s; animation-delay: -12s; }
+.capa--1 .capa__particles span:nth-child(15) { left: 75%; width: 4px; height: 4px; animation-duration: 21s; animation-delay: -6s; }
+
+/* ----------- CAPA II — Arrecife (partículas densas variadas) ----------- */
+.capa--2 .capa__particles span {
+  background: var(--c-aqua-light);
+  box-shadow: 0 0 4px rgba(127, 184, 212, 0.4);
+  opacity: 0.5;
+  animation: driftSlow linear infinite;
+}
+
+.capa--2 .capa__particles span:nth-child(odd)  { background: rgba(245, 241, 234, 0.6); }
+.capa--2 .capa__particles span:nth-child(3n)   { background: rgba(201, 169, 97, 0.5); box-shadow: 0 0 5px rgba(201, 169, 97, 0.3); }
+
+.capa--2 .capa__particles span:nth-child(1)  { top: 12%; left:  8%; width: 2px; height: 2px; animation-duration: 22s; }
+.capa--2 .capa__particles span:nth-child(2)  { top: 22%; left: 30%; width: 3px; height: 3px; animation-duration: 26s; animation-delay: -3s; }
+.capa--2 .capa__particles span:nth-child(3)  { top: 18%; left: 60%; width: 2px; height: 2px; animation-duration: 20s; animation-delay: -7s; }
+.capa--2 .capa__particles span:nth-child(4)  { top: 32%; left: 12%; width: 3px; height: 3px; animation-duration: 24s; animation-delay: -2s; }
+.capa--2 .capa__particles span:nth-child(5)  { top: 40%; left: 78%; width: 2px; height: 2px; animation-duration: 28s; animation-delay: -8s; }
+.capa--2 .capa__particles span:nth-child(6)  { top: 50%; left: 24%; width: 3px; height: 3px; animation-duration: 23s; animation-delay: -4s; }
+.capa--2 .capa__particles span:nth-child(7)  { top: 58%; left: 56%; width: 2px; height: 2px; animation-duration: 21s; animation-delay: -6s; }
+.capa--2 .capa__particles span:nth-child(8)  { top: 66%; left: 88%; width: 3px; height: 3px; animation-duration: 25s; animation-delay: -1s; }
+.capa--2 .capa__particles span:nth-child(9)  { top: 74%; left: 18%; width: 2px; height: 2px; animation-duration: 27s; animation-delay: -9s; }
+.capa--2 .capa__particles span:nth-child(10) { top: 82%; left: 48%; width: 3px; height: 3px; animation-duration: 22s; animation-delay: -3s; }
+.capa--2 .capa__particles span:nth-child(11) { top: 88%; left: 72%; width: 2px; height: 2px; animation-duration: 24s; animation-delay: -7s; }
+.capa--2 .capa__particles span:nth-child(12) { top: 6%;  left: 42%; width: 3px; height: 3px; animation-duration: 26s; animation-delay: -5s; }
+.capa--2 .capa__particles span:nth-child(13) { top: 38%; left: 92%; width: 2px; height: 2px; animation-duration: 20s; animation-delay: -2s; }
+.capa--2 .capa__particles span:nth-child(14) { top: 26%; left:  4%; width: 3px; height: 3px; animation-duration: 23s; animation-delay: -8s; }
+.capa--2 .capa__particles span:nth-child(15) { top: 54%; left: 38%; width: 2px; height: 2px; animation-duration: 25s; animation-delay: -1s; }
+.capa--2 .capa__particles span:nth-child(16) { top: 16%; left: 14%; width: 2px; height: 2px; animation-duration: 19s; animation-delay: -4s; }
+.capa--2 .capa__particles span:nth-child(17) { top: 70%; left: 64%; width: 3px; height: 3px; animation-duration: 21s; animation-delay: -6s; }
+.capa--2 .capa__particles span:nth-child(18) { top: 44%; left: 50%; width: 2px; height: 2px; animation-duration: 27s; animation-delay: -10s; }
+.capa--2 .capa__particles span:nth-child(19) { top: 60%; left:  8%; width: 3px; height: 3px; animation-duration: 24s; animation-delay: -3s; }
+.capa--2 .capa__particles span:nth-child(20) { top: 30%; left: 84%; width: 2px; height: 2px; animation-duration: 26s; animation-delay: -7s; }
+
+/* ----------- CAPA III — Fondo arenoso (partículas descendentes lentas) ----------- */
+.capa--3 .capa__particles span {
+  background: rgba(201, 169, 97, 0.45);
+  box-shadow: 0 0 3px rgba(201, 169, 97, 0.2);
+  top: -10px;
+  animation: descend linear infinite;
+}
+
+.capa--3 .capa__particles span:nth-child(odd) { background: rgba(245, 241, 234, 0.4); }
+
+.capa--3 .capa__particles span:nth-child(1)  { left:  8%; width: 2px; height: 2px; animation-duration: 22s; animation-delay:  0s; }
+.capa--3 .capa__particles span:nth-child(2)  { left: 16%; width: 3px; height: 3px; animation-duration: 28s; animation-delay: -4s; }
+.capa--3 .capa__particles span:nth-child(3)  { left: 24%; width: 2px; height: 2px; animation-duration: 25s; animation-delay: -8s; }
+.capa--3 .capa__particles span:nth-child(4)  { left: 34%; width: 2px; height: 2px; animation-duration: 30s; animation-delay: -3s; }
+.capa--3 .capa__particles span:nth-child(5)  { left: 42%; width: 3px; height: 3px; animation-duration: 26s; animation-delay: -10s; }
+.capa--3 .capa__particles span:nth-child(6)  { left: 50%; width: 2px; height: 2px; animation-duration: 32s; animation-delay: -5s; }
+.capa--3 .capa__particles span:nth-child(7)  { left: 58%; width: 2px; height: 2px; animation-duration: 24s; animation-delay: -12s; }
+.capa--3 .capa__particles span:nth-child(8)  { left: 66%; width: 3px; height: 3px; animation-duration: 29s; animation-delay: -7s; }
+.capa--3 .capa__particles span:nth-child(9)  { left: 74%; width: 2px; height: 2px; animation-duration: 27s; animation-delay: -2s; }
+.capa--3 .capa__particles span:nth-child(10) { left: 82%; width: 2px; height: 2px; animation-duration: 31s; animation-delay: -14s; }
+.capa--3 .capa__particles span:nth-child(11) { left: 90%; width: 3px; height: 3px; animation-duration: 25s; animation-delay: -6s; }
+.capa--3 .capa__particles span:nth-child(12) { left: 30%; width: 2px; height: 2px; animation-duration: 33s; animation-delay: -9s; }
+.capa--3 .capa__particles span:nth-child(13) { left: 60%; width: 2px; height: 2px; animation-duration: 28s; animation-delay: -16s; }
+.capa--3 .capa__particles span:nth-child(14) { left: 12%; width: 3px; height: 3px; animation-duration: 30s; animation-delay: -11s; }
+.capa--3 .capa__particles span:nth-child(15) { left: 78%; width: 2px; height: 2px; animation-duration: 26s; animation-delay: -4s; }
+.capa--3 .capa__particles span:nth-child(16) { left: 38%; width: 2px; height: 2px; animation-duration: 29s; animation-delay: -8s; }
+.capa--3 .capa__particles span:nth-child(17) { left: 48%; width: 2px; height: 2px; animation-duration: 27s; animation-delay: -13s; }
+.capa--3 .capa__particles span:nth-child(18) { left: 88%; width: 3px; height: 3px; animation-duration: 31s; animation-delay: -5s; }
+
+/* ----------- CAPA IV — Aguas abiertas (poquísimas partículas) ----------- */
+.capa--4 .capa__particles span {
+  background: var(--c-bone);
+  opacity: 0.35;
+  box-shadow: 0 0 4px rgba(127, 184, 212, 0.3);
+  animation: driftSlow linear infinite;
+}
+
+.capa--4 .capa__particles span:nth-child(1) { top: 18%; left: 22%; width: 2px; height: 2px; animation-duration: 35s; }
+.capa--4 .capa__particles span:nth-child(2) { top: 38%; left: 78%; width: 2px; height: 2px; animation-duration: 40s; animation-delay: -8s; }
+.capa--4 .capa__particles span:nth-child(3) { top: 58%; left: 18%; width: 3px; height: 3px; animation-duration: 32s; animation-delay: -15s; }
+.capa--4 .capa__particles span:nth-child(4) { top: 78%; left: 64%; width: 2px; height: 2px; animation-duration: 38s; animation-delay: -5s; }
+.capa--4 .capa__particles span:nth-child(5) { top: 28%; left: 52%; width: 2px; height: 2px; animation-duration: 36s; animation-delay: -20s; }
+.capa--4 .capa__particles span:nth-child(6) { top: 68%; left: 38%; width: 3px; height: 3px; animation-duration: 42s; animation-delay: -10s; }
+.capa--4 .capa__particles span:nth-child(7) { top: 48%; left: 88%; width: 2px; height: 2px; animation-duration: 34s; animation-delay: -3s; }
+.capa--4 .capa__particles span:nth-child(8) { top: 88%; left: 14%; width: 2px; height: 2px; animation-duration: 40s; animation-delay: -22s; }
+
+/* ----------- CAPA V — Laberintos (puntos bioluminiscentes parpadeantes) ----------- */
+.capa--5 .capa__particles span {
+  background: var(--c-aqua-light);
+  box-shadow: 0 0 8px rgba(127, 184, 212, 0.8), 0 0 16px rgba(127, 184, 212, 0.4);
+  animation: bioBlink ease-in-out infinite;
+}
+
+.capa--5 .capa__particles span:nth-child(1)  { top:  6%; left:  8%; width: 2px; height: 2px; animation-duration: 4s; animation-delay:  0s; }
+.capa--5 .capa__particles span:nth-child(2)  { top: 14%; left: 32%; width: 3px; height: 3px; animation-duration: 5s; animation-delay: -1s; }
+.capa--5 .capa__particles span:nth-child(3)  { top: 20%; left: 64%; width: 2px; height: 2px; animation-duration: 6s; animation-delay: -2s; }
+.capa--5 .capa__particles span:nth-child(4)  { top: 28%; left: 14%; width: 2px; height: 2px; animation-duration: 4.5s; animation-delay: -3s; }
+.capa--5 .capa__particles span:nth-child(5)  { top: 34%; left: 48%; width: 3px; height: 3px; animation-duration: 7s; animation-delay:  0s; }
+.capa--5 .capa__particles span:nth-child(6)  { top: 38%; left: 84%; width: 2px; height: 2px; animation-duration: 5.5s; animation-delay: -2s; }
+.capa--5 .capa__particles span:nth-child(7)  { top: 46%; left: 22%; width: 2px; height: 2px; animation-duration: 4s; animation-delay: -1.5s; }
+.capa--5 .capa__particles span:nth-child(8)  { top: 52%; left: 58%; width: 3px; height: 3px; animation-duration: 6.5s; animation-delay: -3s; }
+.capa--5 .capa__particles span:nth-child(9)  { top: 60%; left: 88%; width: 2px; height: 2px; animation-duration: 5s; animation-delay: -0.5s; }
+.capa--5 .capa__particles span:nth-child(10) { top: 64%; left:  6%; width: 2px; height: 2px; animation-duration: 7s; animation-delay: -4s; }
+.capa--5 .capa__particles span:nth-child(11) { top: 72%; left: 36%; width: 3px; height: 3px; animation-duration: 4.5s; animation-delay: -1s; }
+.capa--5 .capa__particles span:nth-child(12) { top: 76%; left: 70%; width: 2px; height: 2px; animation-duration: 5s; animation-delay: -2.5s; }
+.capa--5 .capa__particles span:nth-child(13) { top: 84%; left: 18%; width: 2px; height: 2px; animation-duration: 6s; animation-delay: -3.5s; }
+.capa--5 .capa__particles span:nth-child(14) { top: 92%; left: 52%; width: 3px; height: 3px; animation-duration: 4s; animation-delay: -2s; }
+.capa--5 .capa__particles span:nth-child(15) { top: 88%; left: 80%; width: 2px; height: 2px; animation-duration: 5.5s; animation-delay: -1s; }
+.capa--5 .capa__particles span:nth-child(16) { top: 10%; left: 76%; width: 2px; height: 2px; animation-duration: 7s; animation-delay: -3s; }
+.capa--5 .capa__particles span:nth-child(17) { top: 56%; left: 42%; width: 2px; height: 2px; animation-duration: 5s; animation-delay: -0.5s; }
+.capa--5 .capa__particles span:nth-child(18) { top: 24%; left: 50%; width: 3px; height: 3px; animation-duration: 4.5s; animation-delay: -2s; }
+.capa--5 .capa__particles span:nth-child(19) { top: 80%; left: 60%; width: 2px; height: 2px; animation-duration: 6s; animation-delay: -1.5s; }
+.capa--5 .capa__particles span:nth-child(20) { top: 42%; left: 30%; width: 2px; height: 2px; animation-duration: 5.5s; animation-delay: -3s; }
+
+@keyframes descend {
+  0%   { transform: translateY(0) translateX(0); opacity: 0; }
+  10%  { opacity: 0.6; }
+  90%  { opacity: 0.5; }
+  100% { transform: translateY(120vh) translateX(15px); opacity: 0; }
+}
+
+@keyframes driftSlow {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(15px, -10px); }
+}
+
+@keyframes bioBlink {
+  0%, 100% { opacity: 0; transform: scale(0.6); }
+  40%      { opacity: 1; transform: scale(1); }
+  60%      { opacity: 1; transform: scale(1); }
+}
+
+/* ============================================================
+   FAUNA POR CAPA — Posiciones, tamaños, animaciones
+   ============================================================ */
+.cfauna {
+  position: absolute;
+  color: var(--c-aqua-light);
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* CAPA I */
+.capa--1 .cfauna--jelly {
+  width: clamp(30px, 4vw, 55px);
+  top: 18%; left: 8%;
+  opacity: 0.28;
+  animation: gentleFloat 9s ease-in-out infinite;
+}
+.capa--1 .cfauna--flyfish {
+  width: clamp(40px, 5vw, 70px);
+  top: 6%; left: -8%;
+  opacity: 0.3;
+  animation: swimAcrossRight 50s linear infinite;
+  animation-delay: -8s;
+}
+.capa--1 .cfauna--shoal {
+  width: clamp(60px, 8vw, 110px);
+  top: 65%; right: 6%;
+  opacity: 0.25;
+  animation: gentleFloat 11s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+/* CAPA II */
+.capa--2 .cfauna--turtle {
+  width: clamp(60px, 8vw, 110px);
+  top: 12%; left: -10%;
+  opacity: 0.25;
+  animation: swimAcrossRight 65s linear infinite;
+}
+.capa--2 .cfauna--seahorse {
+  width: clamp(28px, 3.6vw, 50px);
+  top: 38%; left: 4%;
+  opacity: 0.3;
+  animation: gentleFloat 8s ease-in-out infinite;
+}
+.capa--2 .cfauna--octo {
+  width: clamp(50px, 6.5vw, 90px);
+  bottom: 8%; right: 6%;
+  opacity: 0.24;
+  animation: gentleFloat 12s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+/* CAPA III */
+.capa--3 .cfauna--starfish {
+  width: clamp(30px, 3.8vw, 55px);
+  bottom: 8%; left: 8%;
+  opacity: 0.28;
+  animation: starSpin 90s linear infinite, gentleFloat 11s ease-in-out infinite;
+}
+.capa--3 .cfauna--garden-eel {
+  width: clamp(22px, 2.6vw, 35px);
+  bottom: 0; right: 18%;
+  opacity: 0.32;
+  transform-origin: bottom center;
+  animation: eelSway 6s ease-in-out infinite;
+}
+.capa--3 .cfauna--ray {
+  width: clamp(70px, 9vw, 130px);
+  top: 22%; right: -12%;
+  opacity: 0.22;
+  animation: swimAcrossLeft 55s linear infinite;
+  transform: scaleX(-1);
+}
+
+/* CAPA IV */
+.capa--4 .cfauna--whale {
+  width: clamp(90px, 12vw, 170px);
+  top: 14%; left: -14%;
+  opacity: 0.2;
+  animation: swimAcrossRight 80s linear infinite;
+}
+.capa--4 .cfauna--hammer {
+  width: clamp(70px, 9vw, 120px);
+  top: 50%; right: -14%;
+  opacity: 0.18;
+  animation: swimAcrossLeft 70s linear infinite;
+  animation-delay: -20s;
+  transform: scaleX(-1);
+}
+.capa--4 .cfauna--manta {
+  width: clamp(60px, 8vw, 110px);
+  bottom: 8%; left: 8%;
+  opacity: 0.2;
+  animation: gentleFloat 12s ease-in-out infinite;
+}
+
+/* CAPA V */
+.capa--5 .cfauna--anglerfish {
+  width: clamp(55px, 7vw, 100px);
+  top: 22%; left: -10%;
+  opacity: 0.32;
+  animation: swimAcrossRight 55s linear infinite;
+  animation-delay: -10s;
+}
+.capa--5 .cfauna--moray {
+  width: clamp(50px, 6vw, 90px);
+  bottom: 12%; right: 6%;
+  opacity: 0.3;
+  animation: gentleFloat 10s ease-in-out infinite;
+}
+.capa--5 .cfauna--lantern {
+  width: clamp(40px, 5vw, 75px);
+  top: 60%; left: 14%;
+  opacity: 0.35;
+  animation: gentleFloat 7s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+/* Bioluminiscencia (puntos brillantes en criaturas profundas) */
+.bio-glow {
+  fill: #7fb8d4;
+  filter: drop-shadow(0 0 4px #7fb8d4) drop-shadow(0 0 8px #7fb8d4);
+  animation: bioGlow 3s ease-in-out infinite;
+}
+
+@keyframes bioGlow {
+  0%, 100% { opacity: 0.6; }
+  50%      { opacity: 1; }
+}
+
+@keyframes eelSway {
+  0%, 100% { transform: rotate(-3deg); }
+  50%      { transform: rotate(3deg); }
+}
+
+/* ============================================================
+   HALOS DISTINTIVOS EN BURBUJAS POR CAPA
+   ============================================================ */
+
+/* Capa I — brillo solar cálido sutil */
+.capa--1 .bubble {
+  background: radial-gradient(circle at 30% 25%, rgba(201, 169, 97, 0.16) 0%, rgba(127, 184, 212, 0.06) 50%, transparent 100%);
+}
+.capa--1 .bubble::before {
+  background: radial-gradient(circle at 35% 25%, rgba(255, 248, 220, 0.3) 0%, transparent 40%);
+}
+
+/* Capa III — asentadas (amplitud de float reducida) */
+.capa--3 .bubble {
+  animation-duration: calc(var(--float-dur, 7s) * 1.5);
+}
+
+/* Capa V — bioluminiscencia intensa */
+.capa--5 .bubble {
+  border-color: rgba(127, 184, 212, 0.75);
+  box-shadow: 0 0 35px rgba(127, 184, 212, 0.35), inset 0 0 30px rgba(127, 184, 212, 0.18);
+  background: radial-gradient(circle at 30% 30%, rgba(127, 184, 212, 0.28) 0%, rgba(127, 184, 212, 0.06) 55%, transparent 100%);
+}
+
+/* ============================================================
+   INTRO DE CAPA — Fade-in escalonado del header
+   ============================================================ */
+.capa__header > * {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 1.4s var(--ease-out), transform 1.4s var(--ease-out);
+}
+
+.capa__header.is-visible > *:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0s; }
+.capa__header.is-visible > *:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.25s; }
+.capa__header.is-visible > *:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.45s; }
+.capa__header.is-visible > *:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.65s; }
+
+/* ============================================================
+   MOBILE — Reducir fauna y partículas por capa
+   ============================================================ */
+@media (max-width: 768px) {
+  .cfauna--shoal,
+  .cfauna--turtle,
+  .cfauna--ray,
+  .cfauna--whale,
+  .cfauna--hammer { display: none; }
+
+  .capa--2 .capa__particles span:nth-child(n+12) { display: none; }
+  .capa--3 .capa__particles span:nth-child(n+12) { display: none; }
+  .capa--5 .capa__particles span:nth-child(n+14) { display: none; }
+}
+
+/* fin separación de capas */
+
+/* Preferencia de reducción de movimiento */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Pulse del indicador de profundidad al cambiar de capa */
+.depth-indicator.is-pulsing {
+  animation: depthPulse 1.4s ease-out;
+}
+
+@keyframes depthPulse {
+  0%   { transform: scale(1); opacity: 1; }
+  20%  { transform: scale(1.08); opacity: 1; }
+  40%  { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ============================================================
+   FONDO OCEANICO UNICO
+   Mantiene un solo degradado detras de toda la pagina y evita
+   que hover/click o separadores pinten franjas sobre el mar.
+   ============================================================ */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% -16%, rgba(127, 184, 212, 0.34), transparent 44%),
+    linear-gradient(to bottom,
+      #285f83 0%,
+      #1d4c72 12%,
+      #143a60 26%,
+      #0d2a4d 40%,
+      #081f3e 54%,
+      #05162e 68%,
+      #030d20 82%,
+      #01050f 94%,
+      #000000 100%);
+}
+
+.prologo,
+.hero,
+.intro,
+.capa-zero,
+.capa,
+.dedicatoria,
+.cierre {
+  background: transparent !important;
+}
+
+.hero::after,
+.intro::after,
+.capa::before,
+.capa::after,
+.cierre::before,
+.capa__transition,
+.capa__atmosphere::before {
+  content: none !important;
+  display: none !important;
+  background: transparent !important;
+  opacity: 0 !important;
+}
+
+.bubble:hover,
+.bubble:active,
+.bubble:focus-visible,
+.capa--3 .bubble:hover,
+.capa--4 .bubble:hover,
+.capa--5 .bubble:hover {
+  transform: none;
+  transition-duration: inherit;
+}
+
+/* ============================================================
+   ANIMALES POR CAPA
+   Assets SVG transparentes ubicados en /animales.
+   ============================================================ */
+.animal-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.animal-layer .animal:not(.animal-sheet) {
+  display: none;
+}
+
+.animal {
+  --animal-size: clamp(4.5rem, 9vw, 9rem);
+  --float-x: 12px;
+  --float-y: 18px;
+  --float-rot: 3deg;
+  position: absolute;
+  width: var(--animal-size);
+  height: auto;
+  opacity: 0.34;
+  filter:
+    drop-shadow(0 0 12px rgba(127, 184, 212, 0.22))
+    drop-shadow(0 12px 28px rgba(0, 0, 0, 0.18));
+  animation: animalFloat 9s ease-in-out infinite;
+  transform-origin: 50% 50%;
+}
+
+.animal-sheet {
+  --animal-size: min(1180px, 104vw);
+  left: 50%;
+  top: 50%;
+  width: var(--animal-size);
+  max-width: none;
+  opacity: 0.36;
+  filter:
+    drop-shadow(0 0 18px rgba(127, 184, 212, 0.22))
+    drop-shadow(0 18px 38px rgba(0, 0, 0, 0.22));
+  animation: animalSheetFloat 18s ease-in-out infinite;
+}
+
+.animal-layer--1 .animal-sheet--1 { top: 62%; left: 50%; opacity: 0.36; --animal-size: min(1120px, 100vw); }
+.animal-layer--2 .animal-sheet--2 { top: 62%; left: 54%; opacity: 0.36; --animal-size: min(1120px, 100vw); }
+.animal-layer--3 .animal-sheet--3 { top: 64%; left: 46%; opacity: 0.34; --animal-size: min(1080px, 98vw); }
+.animal-layer--4 .animal-sheet--4 { top: 58%; left: 48%; opacity: 0.32; --animal-size: min(1240px, 108vw); }
+.animal-layer--5 .animal-sheet--5 { top: 64%; left: 52%; opacity: 0.38; --animal-size: min(1100px, 100vw); }
+
+@keyframes animalSheetFloat {
+  0%, 100% { transform: translate3d(-50%, -50%, 0) rotate(-0.8deg) scale(1); }
+  50% { transform: translate3d(calc(-50% + 14px), calc(-50% - 18px), 0) rotate(0.8deg) scale(1.015); }
+}
+
+.animal:nth-child(2n) { animation-duration: 12s; animation-delay: -2s; }
+.animal:nth-child(3n) { animation-duration: 15s; animation-delay: -5s; }
+.animal:nth-child(4n) { animation-duration: 18s; animation-delay: -8s; }
+
+@keyframes animalFloat {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(calc(var(--float-rot) * -1)); }
+  50% { transform: translate3d(var(--float-x), calc(var(--float-y) * -1), 0) rotate(var(--float-rot)); }
+}
+
+.animal-layer--1 .animal { opacity: 0.34; }
+.animal-layer--2 .animal { opacity: 0.32; }
+.animal-layer--3 .animal { opacity: 0.29; }
+.animal-layer--4 .animal { opacity: 0.27; }
+.animal-layer--5 .animal {
+  opacity: 0.38;
+  filter:
+    drop-shadow(0 0 16px rgba(127, 184, 212, 0.34))
+    drop-shadow(0 0 30px rgba(201, 169, 97, 0.12));
+}
+
+.animal--agua { --animal-size: clamp(8rem, 16vw, 15rem); top: 6%; left: 2%; opacity: 0.1; }
+.animal--volador { top: 16%; right: 9%; --float-x: -18px; }
+.animal--olas { --animal-size: clamp(10rem, 22vw, 20rem); bottom: 4%; left: 9%; opacity: 0.09; }
+.animal--espuma { top: 50%; right: 18%; opacity: 0.12; }
+.animal--plancton { --animal-size: clamp(7rem, 14vw, 13rem); bottom: 16%; right: 4%; opacity: 0.16; }
+.animal--gaviota { top: 3%; left: 38%; --animal-size: clamp(5rem, 9vw, 8rem); }
+.animal--calma { top: 64%; left: 42%; opacity: 0.1; }
+.animal--corriente { bottom: 18%; left: 52%; --animal-size: clamp(8rem, 15vw, 14rem); opacity: 0.1; }
+.animal--buzos { top: 30%; left: 5%; --animal-size: clamp(5rem, 10vw, 8.5rem); }
+.animal--medusas { bottom: 4%; right: 30%; --animal-size: clamp(5rem, 10vw, 9rem); }
+
+.animal--payaso { top: 7%; left: 56%; }
+.animal--tortuga { --animal-size: clamp(9rem, 18vw, 18rem); top: 48%; left: 2%; opacity: 0.14; }
+.animal--cerebro { bottom: 8%; left: 34%; --animal-size: clamp(6rem, 12vw, 11rem); }
+.animal--pulpo { top: 12%; left: 8%; --animal-size: clamp(6rem, 12vw, 11rem); }
+.animal--tiburon-remora { --animal-size: clamp(10rem, 20vw, 19rem); top: 28%; right: -2%; opacity: 0.13; --float-x: -20px; }
+.animal--mandarin { bottom: 18%; right: 18%; }
+.animal--caballito { top: 54%; left: 60%; --animal-size: clamp(4rem, 8vw, 7rem); }
+.animal--sardinas { top: 4%; right: 14%; --animal-size: clamp(7rem, 14vw, 13rem); }
+.animal--caracol { bottom: 4%; left: 10%; --animal-size: clamp(4.5rem, 8vw, 7.5rem); }
+.animal--ermitano { top: 72%; right: 4%; --animal-size: clamp(5rem, 10vw, 9rem); }
+
+.animal--gorgonia { --animal-size: clamp(12rem, 25vw, 24rem); bottom: -2%; left: -2%; opacity: 0.13; }
+.animal--anemona { top: 20%; left: 66%; }
+.animal--estrella { bottom: 12%; right: 14%; --animal-size: clamp(4rem, 8vw, 7rem); }
+.animal--lenguado { top: 58%; right: 1%; --animal-size: clamp(8rem, 16vw, 15rem); opacity: 0.12; }
+.animal--esponja { top: 10%; left: 16%; }
+.animal--anguila { bottom: 4%; left: 52%; --animal-size: clamp(4rem, 8vw, 7rem); }
+.animal--erizos { top: 68%; left: 22%; --animal-size: clamp(4.5rem, 9vw, 8rem); }
+.animal--perla { top: 38%; left: 40%; --animal-size: clamp(5rem, 10vw, 9rem); }
+.animal--raya-latigo { top: 1%; right: 8%; --animal-size: clamp(9rem, 18vw, 17rem); opacity: 0.12; }
+
+.animal--ballena { --animal-size: clamp(16rem, 32vw, 31rem); top: 2%; left: 5%; opacity: 0.12; --float-x: 24px; }
+.animal--martillo { top: 28%; right: 8%; --animal-size: clamp(8rem, 16vw, 15rem); }
+.animal--manta { bottom: 0; left: 36%; --animal-size: clamp(10rem, 20vw, 19rem); opacity: 0.12; }
+.animal--barracuda { top: 52%; left: 2%; --animal-size: clamp(8rem, 16vw, 15rem); }
+.animal--mero { bottom: 14%; right: 4%; --animal-size: clamp(8rem, 15vw, 14rem); }
+.animal--vela { top: 10%; right: 28%; --animal-size: clamp(7rem, 14vw, 13rem); }
+.animal--canto { bottom: 6%; left: 6%; --animal-size: clamp(8rem, 16vw, 15rem); opacity: 0.11; }
+.animal--calamar { top: 44%; left: 52%; --animal-size: clamp(7rem, 14vw, 13rem); }
+
+.animal--morena { top: 10%; left: 0; --animal-size: clamp(9rem, 18vw, 17rem); }
+.animal--globo { top: 2%; right: 12%; --animal-size: clamp(5.5rem, 11vw, 10rem); }
+.animal--decorador { bottom: 12%; left: 8%; --animal-size: clamp(5rem, 10vw, 9rem); }
+.animal--balanos { bottom: 0; right: 4%; --animal-size: clamp(7rem, 14vw, 13rem); opacity: 0.16; }
+.animal--linterna { top: 52%; right: 16%; --animal-size: clamp(7rem, 14vw, 13rem); opacity: 0.28; }
+.animal--coral-final { --animal-size: clamp(12rem, 24vw, 23rem); bottom: -4%; left: 37%; opacity: 0.16; }
+.animal--angel { top: 30%; left: 42%; --animal-size: clamp(6rem, 12vw, 11rem); }
+.animal--ancla { top: 70%; right: 34%; --animal-size: clamp(5rem, 10vw, 9rem); opacity: 0.18; }
+
+@media (max-width: 620px) {
+  .animal {
+    opacity: 0.12;
+    --animal-size: 5.5rem;
+  }
+
+  .animal-sheet {
+    --animal-size: 175vw;
+    opacity: 0.34;
+  }
+
+  .animal-layer--1 .animal-sheet--1 { top: 67%; left: 46%; opacity: 0.3; --animal-size: 168vw; }
+  .animal-layer--2 .animal-sheet--2 { top: 70%; left: 53%; opacity: 0.32; --animal-size: 172vw; }
+  .animal-layer--3 .animal-sheet--3 { top: 69%; left: 44%; opacity: 0.3; --animal-size: 170vw; }
+  .animal-layer--4 .animal-sheet--4 { top: 66%; left: 52%; opacity: 0.3; --animal-size: 188vw; }
+  .animal-layer--5 .animal-sheet--5 { top: 70%; left: 50%; opacity: 0.34; --animal-size: 176vw; }
+
+  .animal-layer .animal:nth-child(n+6) {
+    display: none;
+  }
+
+  .animal--ballena,
+  .animal--coral-final,
+  .animal--gorgonia,
+  .animal--tortuga {
+    --animal-size: 9rem;
+  }
+}
+
+/* ============================================================
+   RECORRIDO VISUAL POR CAPAS
+   Cada zona usa una composicion distinta para que el diccionario
+   deje de sentirse como una misma cuadricula repetida.
+   ============================================================ */
+.capa {
+  min-height: 100vh;
+}
+
+.capa__header {
+  position: relative;
+}
+
+.capa__header::after {
+  content: "";
+  width: min(14rem, 36vw);
+  height: 1px;
+  margin-top: 0.35rem;
+  background: linear-gradient(to right, transparent, rgba(127, 184, 212, 0.42), transparent);
+}
+
+.bubbles::before,
+.bubbles::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.bubble {
+  overflow-wrap: anywhere;
+}
+
+/* I: superficie como constelacion luminosa y abierta */
+.capa--1 .capa__inner {
+  max-width: 1280px;
+}
+
+.capa--1 .capa__header {
+  align-items: flex-start;
+  text-align: left;
+  max-width: 620px;
+  margin-left: clamp(0rem, 7vw, 5rem);
+  margin-bottom: clamp(2.5rem, 6vw, 5rem);
+}
+
+.capa--1 .capa__header::after {
+  margin-left: 0;
+}
+
+.capa--1 .bubbles {
+  max-width: 1200px;
+  height: clamp(420px, 54vw, 620px);
+}
+
+.capa--1 .bubbles::before {
+  inset: 8% 4% 18% 5%;
+  border-top: 1px solid rgba(127, 184, 212, 0.18);
+  border-radius: 50%;
+  transform: rotate(-5deg);
+}
+
+.capa--1 .bubble {
+  border-radius: 999px;
+  height: clamp(48px, 5.8vw, 68px);
+  min-width: clamp(112px, 12vw, 158px);
+  background: rgba(127, 184, 212, 0.055);
+  animation-duration: 9s;
+}
+
+.capa--1 .bubble:nth-child(1)  { top:  4%; left:  2%; }
+.capa--1 .bubble:nth-child(2)  { top: 18%; left: 18%; }
+.capa--1 .bubble:nth-child(3)  { top:  8%; left: 42%; }
+.capa--1 .bubble:nth-child(4)  { top: 26%; left: 68%; }
+.capa--1 .bubble:nth-child(5)  { top: 42%; left:  8%; }
+.capa--1 .bubble:nth-child(6)  { top: 54%; left: 30%; }
+.capa--1 .bubble:nth-child(7)  { top: 43%; left: 55%; }
+.capa--1 .bubble:nth-child(8)  { top: 68%; left: 68%; }
+.capa--1 .bubble:nth-child(9)  { top: 76%; left: 18%; }
+.capa--1 .bubble:nth-child(10) { top: 82%; left: 45%; }
+
+/* II: arrecife como muro coralino, mas editorial y denso */
+.capa--2 .capa__inner {
+  max-width: 1180px;
+  display: grid;
+  grid-template-columns: minmax(240px, 0.75fr) minmax(0, 1.25fr);
+  gap: clamp(3rem, 6vw, 6rem);
+  align-items: center;
+}
+
+.capa--2 .capa__header {
+  text-align: left;
+  align-items: flex-start;
+  margin: 0;
+}
+
+.capa--2 .capa__header::after {
+  margin-left: 0;
+}
+
+.capa--2 .bubbles {
+  max-width: none;
+  height: 640px;
+  border-left: 1px solid rgba(201, 169, 97, 0.3);
+  border-bottom: 1px solid rgba(127, 184, 212, 0.12);
+}
+
+.capa--2 .bubbles::before {
+  inset: 6% 8% 8% 0;
+  background:
+    linear-gradient(115deg, transparent 0 24%, rgba(201, 169, 97, 0.08) 24% 25%, transparent 25% 100%),
+    linear-gradient(65deg, transparent 0 54%, rgba(127, 184, 212, 0.08) 54% 55%, transparent 55% 100%);
+}
+
+.capa--2 .bubble {
+  border-radius: 4px;
+  width: clamp(128px, 13vw, 176px);
+  height: clamp(58px, 6vw, 76px);
+  background: rgba(5, 13, 26, 0.18);
+  border-color: rgba(201, 169, 97, 0.22);
+  animation-duration: 12s;
+}
+
+.capa--2 .bubble::before {
+  inset: auto;
+  width: 5px;
+  height: 5px;
+  left: 10px;
+  top: 10px;
+  background: var(--c-gold);
+  opacity: 0.5;
+}
+
+.capa--2 .bubble:nth-child(1)  { top:  4%; left:  7%; }
+.capa--2 .bubble:nth-child(2)  { top:  3%; left: 43%; }
+.capa--2 .bubble:nth-child(3)  { top: 17%; left: 25%; }
+.capa--2 .bubble:nth-child(4)  { top: 22%; left: 63%; }
+.capa--2 .bubble:nth-child(5)  { top: 38%; left:  6%; }
+.capa--2 .bubble:nth-child(6)  { top: 42%; left: 38%; }
+.capa--2 .bubble:nth-child(7)  { top: 53%; left: 68%; }
+.capa--2 .bubble:nth-child(8)  { top: 66%; left: 18%; }
+.capa--2 .bubble:nth-child(9)  { top: 76%; left: 47%; }
+.capa--2 .bubble:nth-child(10) { top: 83%; left: 72%; }
+
+/* III: fondo arenoso como estratos y bitacora */
+.capa--3 .capa__inner {
+  max-width: 1240px;
+}
+
+.capa--3 .capa__header {
+  text-align: left;
+  align-items: flex-start;
+  width: min(560px, 88vw);
+  margin-bottom: clamp(3rem, 6vw, 4.5rem);
+}
+
+.capa--3 .capa__header::after {
+  margin-left: 0;
+}
+
+.capa--3 .bubbles {
+  max-width: 1180px;
+  height: 520px;
+}
+
+.capa--3 .bubbles::before {
+  inset: 14% 0 10% 0;
+  background:
+    linear-gradient(to bottom, transparent 0 24%, rgba(245, 241, 234, 0.09) 24% 24.4%, transparent 24.4% 49%, rgba(245, 241, 234, 0.07) 49% 49.4%, transparent 49.4% 74%, rgba(245, 241, 234, 0.05) 74% 74.4%, transparent 74.4% 100%);
+}
+
+.capa--3 .bubble {
+  width: clamp(118px, 12vw, 168px);
+  height: 44px;
+  border-radius: 0;
+  border-width: 0 0 1px;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  animation-duration: 16s;
+}
+
+.capa--3 .bubble::before {
+  inset: auto;
+  left: 0;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  transform: translateY(-50%);
+  background: rgba(201, 169, 97, 0.75);
+}
+
+.capa--3 .bubble:nth-child(1)  { top: 10%; left:  3%; }
+.capa--3 .bubble:nth-child(2)  { top: 10%; left: 31%; }
+.capa--3 .bubble:nth-child(3)  { top: 10%; left: 61%; }
+.capa--3 .bubble:nth-child(4)  { top: 34%; left: 12%; }
+.capa--3 .bubble:nth-child(5)  { top: 34%; left: 44%; }
+.capa--3 .bubble:nth-child(6)  { top: 34%; left: 74%; }
+.capa--3 .bubble:nth-child(7)  { top: 58%; left:  5%; }
+.capa--3 .bubble:nth-child(8)  { top: 58%; left: 36%; }
+.capa--3 .bubble:nth-child(9)  { top: 58%; left: 66%; }
+.capa--3 .bubble:nth-child(10) { top: 80%; left: 48%; }
+
+/* IV: aguas abiertas como mapa de navegacion, mucho vacio */
+.capa--4 .capa__inner {
+  max-width: 1320px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 360px);
+  gap: clamp(3rem, 7vw, 7rem);
+  align-items: center;
+}
+
+.capa--4 .capa__header {
+  grid-column: 2;
+  grid-row: 1;
+  text-align: right;
+  align-items: flex-end;
+  margin: 0;
+}
+
+.capa--4 .capa__header::after {
+  margin-right: 0;
+}
+
+.capa--4 .bubbles {
+  grid-column: 1;
+  grid-row: 1;
+  max-width: none;
+  height: 720px;
+}
+
+.capa--4 .bubbles::before {
+  inset: 8% 8% 8% 8%;
+  border: 1px solid rgba(127, 184, 212, 0.12);
+  border-radius: 50%;
+  transform: rotate(12deg);
+}
+
+.capa--4 .bubbles::after {
+  left: 50%;
+  top: 8%;
+  bottom: 8%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(127, 184, 212, 0.22), transparent);
+}
+
+.capa--4 .bubble {
+  width: clamp(92px, 10vw, 132px);
+  height: clamp(92px, 10vw, 132px);
+  border-color: rgba(127, 184, 212, 0.22);
+  background: rgba(127, 184, 212, 0.025);
+  animation-duration: 20s;
+}
+
+.capa--4 .bubble:nth-child(1)  { top:  2%; left: 44%; }
+.capa--4 .bubble:nth-child(2)  { top: 14%; left: 10%; }
+.capa--4 .bubble:nth-child(3)  { top: 18%; left: 72%; }
+.capa--4 .bubble:nth-child(4)  { top: 37%; left: 32%; }
+.capa--4 .bubble:nth-child(5)  { top: 45%; left: 58%; }
+.capa--4 .bubble:nth-child(6)  { top: 62%; left:  8%; }
+.capa--4 .bubble:nth-child(7)  { top: 67%; left: 76%; }
+.capa--4 .bubble:nth-child(8)  { top: 78%; left: 44%; }
+.capa--4 .bubble:nth-child(9)  { top: 45%; left:  2%; }
+.capa--4 .bubble:nth-child(10) { top: 31%; left: 84%; }
+
+/* V: grietas como laberinto angular */
+.capa--5 .capa__inner {
+  max-width: 1200px;
+}
+
+.capa--5 .capa__header {
+  margin-left: auto;
+  max-width: 640px;
+  text-align: right;
+  align-items: flex-end;
+  margin-bottom: clamp(3.5rem, 7vw, 6rem);
+}
+
+.capa--5 .capa__header::after {
+  margin-right: 0;
+}
+
+.capa--5 .bubbles {
+  height: 680px;
+}
+
+.capa--5 .bubbles::before {
+  inset: 0;
+  background:
+    linear-gradient(135deg, transparent 0 18%, rgba(127, 184, 212, 0.12) 18% 18.4%, transparent 18.4% 100%),
+    linear-gradient(35deg, transparent 0 42%, rgba(127, 184, 212, 0.1) 42% 42.35%, transparent 42.35% 100%),
+    linear-gradient(155deg, transparent 0 64%, rgba(201, 169, 97, 0.08) 64% 64.35%, transparent 64.35% 100%);
+}
+
+.capa--5 .bubble {
+  width: clamp(120px, 13vw, 178px);
+  height: clamp(54px, 6vw, 74px);
+  border-radius: 2px;
+  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+  background: rgba(5, 13, 26, 0.28);
+  animation-duration: 13s;
+}
+
+.capa--5 .bubble:nth-child(1)  { top:  0%; left: 18%; }
+.capa--5 .bubble:nth-child(2)  { top:  9%; left: 57%; }
+.capa--5 .bubble:nth-child(3)  { top: 22%; left:  4%; }
+.capa--5 .bubble:nth-child(4)  { top: 25%; left: 72%; }
+.capa--5 .bubble:nth-child(5)  { top: 40%; left: 34%; }
+.capa--5 .bubble:nth-child(6)  { top: 51%; left:  9%; }
+.capa--5 .bubble:nth-child(7)  { top: 58%; left: 59%; }
+.capa--5 .bubble:nth-child(8)  { top: 73%; left: 26%; }
+.capa--5 .bubble:nth-child(9)  { top: 83%; left: 66%; }
+.capa--5 .bubble:nth-child(10) { top: 90%; left:  5%; }
+
+@media (max-width: 900px) {
+  .capa--2 .capa__inner,
+  .capa--4 .capa__inner {
+    display: block;
+  }
+
+  .capa--1 .capa__header,
+  .capa--2 .capa__header,
+  .capa--3 .capa__header,
+  .capa--4 .capa__header,
+  .capa--5 .capa__header {
+    align-items: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .capa--1 .capa__header::after,
+  .capa--2 .capa__header::after,
+  .capa--3 .capa__header::after,
+  .capa--4 .capa__header::after,
+  .capa--5 .capa__header::after {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .capa--2 .bubbles,
+  .capa--4 .bubbles {
+    margin-top: 3rem;
+  }
+
+  .bubble {
+    min-width: auto;
+  }
+}
+
+@media (max-width: 620px) {
+  .capa {
+    padding-inline: 1rem;
+  }
+
+  .bubbles,
+  .capa--1 .bubbles,
+  .capa--2 .bubbles,
+  .capa--3 .bubbles,
+  .capa--4 .bubbles,
+  .capa--5 .bubbles {
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    border: 0;
+  }
+
+  .bubbles::before,
+  .bubbles::after {
+    content: none;
+  }
+
+  .bubble,
+  .capa--1 .bubble,
+  .capa--2 .bubble,
+  .capa--3 .bubble,
+  .capa--4 .bubble,
+  .capa--5 .bubble {
+    position: relative;
+    inset: auto;
+    top: auto;
+    left: auto;
+    width: 100%;
+    min-width: 0;
+    height: 4rem;
+    border-radius: 4px;
+    clip-path: none;
+    animation: none;
+    transform: none;
+  }
+}
+
+@media (max-width: 620px) {
+  .capa--1 .bubbles {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  .capa--1 .bubble {
+    flex: 1 1 calc(50% - 0.8rem);
+    border-radius: 999px;
+  }
+
+  .capa--1 .bubble:nth-child(3n) {
+    flex-basis: 72%;
+    margin-left: auto;
+  }
+
+  .capa--2 .bubbles {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 0.85rem;
+  }
+
+  .capa--2 .bubble:nth-child(even) {
+    transform: translateY(1.6rem);
+  }
+
+  .capa--3 .bubbles {
+    display: block;
+    padding-left: 1.25rem;
+    border-left: 1px solid rgba(201, 169, 97, 0.32);
+  }
+
+  .capa--3 .bubble {
+    width: min(92%, 21rem);
+    margin: 0 0 0.85rem;
+    border-radius: 0;
+    border-width: 0 0 1px;
+  }
+
+  .capa--3 .bubble:nth-child(even) {
+    margin-left: auto;
+  }
+
+  .capa--4 .bubbles {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.3rem;
+    padding-block: 1rem;
+  }
+
+  .capa--4 .bubble {
+    height: auto;
+    aspect-ratio: 1;
+    border-radius: 50%;
+  }
+
+  .capa--4 .bubble:nth-child(3n) {
+    grid-column: span 2;
+    width: min(58%, 12rem);
+    justify-self: center;
+  }
+
+  .capa--5 .bubbles {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+
+  .capa--5 .bubble {
+    width: min(88%, 22rem);
+    clip-path: polygon(7% 0, 100% 0, 93% 100%, 0 100%);
+    justify-self: start;
+  }
+
+  .capa--5 .bubble:nth-child(even) {
+    justify-self: end;
+  }
+}
+
+/* ============================================================
+   AIRE ENTRE FAUNA Y PALABRAS
+   Separacion final para que animales y burbujas respiren mejor.
+   ============================================================ */
+.capa {
+  padding-top: clamp(7rem, 13vw, 13rem);
+  padding-bottom: clamp(8rem, 15vw, 15rem);
+}
+
+.capa__header {
+  margin-bottom: clamp(5rem, 10vw, 8rem);
+}
+
+.capa--1 .bubbles,
+.capa--2 .bubbles,
+.capa--3 .bubbles,
+.capa--4 .bubbles,
+.capa--5 .bubbles {
+  min-height: clamp(720px, 68vw, 860px);
+}
+
+.animal-sheet {
+  opacity: 0.28;
+}
+
+.animal-layer--1 .animal-sheet--1 { top: 70%; opacity: 0.27; --animal-size: min(1040px, 92vw); }
+.animal-layer--2 .animal-sheet--2 { top: 72%; left: 57%; opacity: 0.28; --animal-size: min(1040px, 92vw); }
+.animal-layer--3 .animal-sheet--3 { top: 73%; left: 43%; opacity: 0.26; --animal-size: min(1020px, 90vw); }
+.animal-layer--4 .animal-sheet--4 { top: 68%; left: 46%; opacity: 0.25; --animal-size: min(1160px, 100vw); }
+.animal-layer--5 .animal-sheet--5 { top: 74%; left: 54%; opacity: 0.3; --animal-size: min(1020px, 92vw); }
+
+.capa--1 .bubble:nth-child(1)  { top:  0%; left:  0%; }
+.capa--1 .bubble:nth-child(2)  { top: 13%; left: 22%; }
+.capa--1 .bubble:nth-child(3)  { top:  2%; left: 48%; }
+.capa--1 .bubble:nth-child(4)  { top: 19%; left: 76%; }
+.capa--1 .bubble:nth-child(5)  { top: 39%; left:  5%; }
+.capa--1 .bubble:nth-child(6)  { top: 51%; left: 31%; }
+.capa--1 .bubble:nth-child(7)  { top: 37%; left: 60%; }
+.capa--1 .bubble:nth-child(8)  { top: 63%; left: 74%; }
+.capa--1 .bubble:nth-child(9)  { top: 76%; left: 13%; }
+.capa--1 .bubble:nth-child(10) { top: 84%; left: 47%; }
+
+.capa--2 .bubble:nth-child(1)  { top:  0%; left:  2%; }
+.capa--2 .bubble:nth-child(2)  { top:  2%; left: 50%; }
+.capa--2 .bubble:nth-child(3)  { top: 18%; left: 24%; }
+.capa--2 .bubble:nth-child(4)  { top: 27%; left: 70%; }
+.capa--2 .bubble:nth-child(5)  { top: 42%; left:  4%; }
+.capa--2 .bubble:nth-child(6)  { top: 48%; left: 42%; }
+.capa--2 .bubble:nth-child(7)  { top: 60%; left: 76%; }
+.capa--2 .bubble:nth-child(8)  { top: 75%; left: 12%; }
+.capa--2 .bubble:nth-child(9)  { top: 84%; left: 48%; }
+.capa--2 .bubble:nth-child(10) { top: 92%; left: 72%; }
+
+.capa--3 .bubble:nth-child(1)  { top:  4%; left:  0%; }
+.capa--3 .bubble:nth-child(2)  { top:  4%; left: 34%; }
+.capa--3 .bubble:nth-child(3)  { top:  4%; left: 68%; }
+.capa--3 .bubble:nth-child(4)  { top: 31%; left: 10%; }
+.capa--3 .bubble:nth-child(5)  { top: 31%; left: 47%; }
+.capa--3 .bubble:nth-child(6)  { top: 31%; left: 78%; }
+.capa--3 .bubble:nth-child(7)  { top: 58%; left:  2%; }
+.capa--3 .bubble:nth-child(8)  { top: 58%; left: 39%; }
+.capa--3 .bubble:nth-child(9)  { top: 58%; left: 72%; }
+.capa--3 .bubble:nth-child(10) { top: 86%; left: 49%; }
+
+.capa--4 .bubble:nth-child(1)  { top:  0%; left: 45%; }
+.capa--4 .bubble:nth-child(2)  { top: 10%; left:  6%; }
+.capa--4 .bubble:nth-child(3)  { top: 15%; left: 78%; }
+.capa--4 .bubble:nth-child(4)  { top: 35%; left: 28%; }
+.capa--4 .bubble:nth-child(5)  { top: 47%; left: 60%; }
+.capa--4 .bubble:nth-child(6)  { top: 62%; left:  4%; }
+.capa--4 .bubble:nth-child(7)  { top: 70%; left: 80%; }
+.capa--4 .bubble:nth-child(8)  { top: 86%; left: 44%; }
+.capa--4 .bubble:nth-child(9)  { top: 45%; left:  0%; }
+.capa--4 .bubble:nth-child(10) { top: 30%; left: 88%; }
+
+.capa--5 .bubble:nth-child(1)  { top:  0%; left: 14%; }
+.capa--5 .bubble:nth-child(2)  { top:  8%; left: 62%; }
+.capa--5 .bubble:nth-child(3)  { top: 24%; left:  0%; }
+.capa--5 .bubble:nth-child(4)  { top: 29%; left: 76%; }
+.capa--5 .bubble:nth-child(5)  { top: 44%; left: 35%; }
+.capa--5 .bubble:nth-child(6)  { top: 59%; left:  8%; }
+.capa--5 .bubble:nth-child(7)  { top: 66%; left: 63%; }
+.capa--5 .bubble:nth-child(8)  { top: 82%; left: 24%; }
+.capa--5 .bubble:nth-child(9)  { top: 92%; left: 68%; }
+.capa--5 .bubble:nth-child(10) { top: 96%; left:  2%; }
+
+@media (max-width: 620px) {
+  .capa {
+    padding-top: 7rem;
+    padding-bottom: 8.5rem;
+  }
+
+  .capa__header {
+    margin-bottom: 4.75rem;
+  }
+
+  .bubbles,
+  .capa--1 .bubbles,
+  .capa--2 .bubbles,
+  .capa--3 .bubbles,
+  .capa--4 .bubbles,
+  .capa--5 .bubbles {
+    gap: 1.35rem;
+    min-height: 0;
+  }
+
+  .capa--1 .bubbles { gap: 1.25rem 1rem; }
+  .capa--2 .bubbles { gap: 1.75rem 1rem; }
+  .capa--4 .bubbles { gap: 1.8rem 1.25rem; }
+  .capa--5 .bubbles { gap: 1rem; }
+
+  .capa--3 .bubble {
+    margin-bottom: 1.35rem;
+  }
+
+  .animal-sheet {
+    --animal-size: 150vw;
+  }
+
+  .animal-layer--1 .animal-sheet--1 { top: 76%; left: 44%; opacity: 0.22; --animal-size: 145vw; }
+  .animal-layer--2 .animal-sheet--2 { top: 80%; left: 56%; opacity: 0.24; --animal-size: 148vw; }
+  .animal-layer--3 .animal-sheet--3 { top: 79%; left: 42%; opacity: 0.22; --animal-size: 148vw; }
+  .animal-layer--4 .animal-sheet--4 { top: 76%; left: 54%; opacity: 0.22; --animal-size: 160vw; }
+  .animal-layer--5 .animal-sheet--5 { top: 80%; left: 50%; opacity: 0.25; --animal-size: 150vw; }
+}
