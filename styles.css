@@ -3716,3 +3716,601 @@ body {
     grid-column: auto;
   }
 }
+
+/* ============================================================
+   RESPONSIVE FINAL COMPLETO
+   Consolidacion de escritorio, tablet y movil para evitar solapes.
+   ============================================================ */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+}
+
+body {
+  min-width: 320px;
+}
+
+main,
+section,
+header,
+footer,
+.nav,
+.prologo,
+.hero,
+.intro,
+.capa,
+.dedicatoria,
+.cierre {
+  max-width: 100%;
+}
+
+.nav {
+  min-width: 0;
+}
+
+.nav__brand,
+.nav__links,
+.nav__credits {
+  min-width: 0;
+}
+
+.nav__links {
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.nav__brand,
+.nav__credit-value,
+.nav__links a,
+.hero__title,
+.prologo__quote,
+.intro__title,
+.capa__title,
+.dedicatoria__title,
+.cierre__title,
+.modal__word {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.prologo,
+.hero,
+.dedicatoria {
+  min-height: 100svh;
+}
+
+.prologo__overlay,
+.hero,
+.intro,
+.capa,
+.dedicatoria,
+.cierre,
+.footer {
+  padding-left: clamp(1rem, 4vw, 4rem);
+  padding-right: clamp(1rem, 4vw, 4rem);
+}
+
+@media (max-width: 1180px) {
+  .nav {
+    grid-template-columns: minmax(8rem, 0.75fr) minmax(18rem, auto) minmax(17rem, 1fr);
+    gap: 1rem;
+    padding: 1.15rem clamp(1rem, 3vw, 2rem);
+  }
+
+  .nav__links {
+    justify-content: flex-end;
+    gap: 0.65rem 1rem;
+  }
+
+  .nav__links a {
+    font-size: 0.78rem;
+  }
+
+  .nav__credits {
+    max-width: 100%;
+    gap: 0.75rem;
+    padding-inline: 0.8rem;
+  }
+
+  .nav__credit-value {
+    font-size: 0.84rem;
+    letter-spacing: 0.06em;
+  }
+
+  .capa--2 .capa__inner,
+  .capa--4 .capa__inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .capa--2 .capa__header,
+  .capa--4 .capa__header {
+    grid-column: auto;
+    grid-row: auto;
+    align-items: center;
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  .capa--4 .bubbles {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 860px) {
+  .nav {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 0.7rem 1rem;
+    padding: 0.85rem 1rem;
+  }
+
+  .nav__brand {
+    font-size: 0.96rem;
+    line-height: 1.1;
+  }
+
+  .nav__links {
+    justify-content: flex-end;
+    max-width: 21rem;
+    gap: 0.38rem 0.8rem;
+  }
+
+  .nav__links a {
+    font-size: 0.68rem;
+    line-height: 1.2;
+  }
+
+  .nav__credits {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+    padding: 0.55rem 0;
+  }
+
+  .nav__credit {
+    justify-items: center;
+  }
+
+  .nav__credit-label {
+    font-size: 0.48rem;
+  }
+
+  .nav__credit-value {
+    font-size: 0.76rem;
+    line-height: 1.15;
+  }
+
+  .hero {
+    min-height: 100svh;
+    margin-top: -10vh;
+    padding-top: 12rem;
+    padding-bottom: 5rem;
+  }
+
+  .prologo__overlay {
+    padding-top: 10rem;
+    padding-bottom: 4rem;
+  }
+
+  .hero__title {
+    font-size: clamp(2.7rem, 12vw, 5.8rem);
+    letter-spacing: 0.045em;
+  }
+
+  .hero__divers {
+    width: min(132vw, 760px);
+    height: clamp(13rem, 34vw, 22rem);
+    opacity: 0.58;
+  }
+
+  .hero__diver {
+    width: clamp(16rem, 52vw, 28rem);
+  }
+
+  .intro,
+  .capa,
+  .dedicatoria,
+  .cierre {
+    padding-top: clamp(5.5rem, 13vw, 8rem);
+    padding-bottom: clamp(6rem, 14vw, 9rem);
+  }
+
+  .intro__inner,
+  .cierre__inner,
+  .dedicatoria__inner,
+  .capa__inner {
+    width: min(100%, 44rem);
+  }
+
+  .capa__header {
+    margin-bottom: clamp(3rem, 8vw, 4.5rem);
+  }
+
+  .bubbles,
+  .capa--1 .bubbles,
+  .capa--2 .bubbles,
+  .capa--3 .bubbles,
+  .capa--4 .bubbles,
+  .capa--5 .bubbles {
+    height: auto;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    max-width: 42rem;
+    margin-inline: auto;
+    border: 0;
+    padding: 0;
+  }
+
+  .bubbles::before,
+  .bubbles::after,
+  .capa--1 .bubbles::before,
+  .capa--2 .bubbles::before,
+  .capa--3 .bubbles::before,
+  .capa--4 .bubbles::before,
+  .capa--4 .bubbles::after,
+  .capa--5 .bubbles::before {
+    content: none;
+    display: none;
+  }
+
+  .bubble,
+  .capa--1 .bubble,
+  .capa--2 .bubble,
+  .capa--3 .bubble,
+  .capa--4 .bubble,
+  .capa--5 .bubble {
+    position: relative;
+    inset: auto;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    min-height: 4.15rem;
+    max-width: none;
+    margin: 0;
+    border-radius: 0.45rem;
+    clip-path: none;
+    aspect-ratio: auto;
+    transform: none;
+    animation: none;
+  }
+
+  .capa--4 .bubble {
+    border-radius: 999px;
+    aspect-ratio: auto;
+  }
+
+  .capa--3 .bubbles {
+    border-left: 1px solid rgba(201, 169, 97, 0.24);
+    padding-left: 1rem;
+  }
+
+  .capa--3 .bubble {
+    border-radius: 0;
+  }
+
+  .animal-layer {
+    opacity: 0.55;
+  }
+
+  .animal {
+    --animal-size: clamp(4rem, 12vw, 7rem);
+  }
+
+  .animal-sheet {
+    --animal-size: min(135vw, 760px);
+    opacity: 0.22;
+  }
+
+  .modal {
+    align-items: flex-end;
+    padding: 1rem;
+  }
+
+  .modal__card {
+    max-height: calc(100svh - 2rem);
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 620px) {
+  .nav {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 0.58rem;
+    padding: 0.72rem 0.9rem 0.9rem;
+  }
+
+  .nav__brand {
+    font-size: 0.86rem;
+    letter-spacing: 0.12em;
+  }
+
+  .nav__credits {
+    width: min(100%, 23rem);
+    grid-template-columns: 1fr;
+    gap: 0.48rem;
+    padding: 0.52rem 0;
+  }
+
+  .nav__credit-divider {
+    width: min(8rem, 52vw);
+    height: 1px;
+    justify-self: center;
+    background: linear-gradient(to right, transparent, rgba(245, 241, 234, 0.34), transparent);
+  }
+
+  .nav__credit-label {
+    font-size: 0.46rem;
+    letter-spacing: 0.16em;
+  }
+
+  .nav__credit-value {
+    font-size: 0.74rem;
+    letter-spacing: 0.07em;
+  }
+
+  .nav__links {
+    justify-self: center;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, max-content);
+    justify-content: center;
+    max-width: 100%;
+    gap: 0.38rem 0.72rem;
+  }
+
+  .nav__links a {
+    font-size: 0.64rem;
+  }
+
+  .prologo__overlay {
+    padding-top: 12rem;
+    justify-content: center;
+  }
+
+  .prologo__eyebrow {
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+  }
+
+  .prologo__quote {
+    font-size: clamp(2.05rem, 13.5vw, 3.7rem);
+    line-height: 1;
+  }
+
+  .prologo__scroll,
+  .hero__scroll {
+    bottom: 1.25rem;
+  }
+
+  .hero {
+    padding-top: 13rem;
+    padding-bottom: 4rem;
+  }
+
+  .hero__eyebrow {
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+  }
+
+  .hero__title {
+    max-width: 10ch;
+    margin-inline: auto;
+    font-size: clamp(2.15rem, 11.5vw, 3.45rem);
+    line-height: 0.98;
+    letter-spacing: 0.035em;
+  }
+
+  .hero__subtitle {
+    font-size: 1rem;
+  }
+
+  .hero__divers {
+    width: 142vw;
+    height: 13.5rem;
+    opacity: 0.42;
+  }
+
+  .intro__title,
+  .capa__title,
+  .dedicatoria__title,
+  .cierre__title {
+    font-size: clamp(2rem, 10.6vw, 3.25rem);
+    line-height: 1.04;
+  }
+
+  .intro__body p,
+  .cierre__body p,
+  .capa__lead,
+  .dedicatoria__intro {
+    font-size: 1.02rem;
+    line-height: 1.65;
+  }
+
+  .eyebrow,
+  .dedicatoria__eyebrow,
+  .dedicatoria__wall-title,
+  .capa__depth,
+  .modal__capa {
+    letter-spacing: 0.14em;
+  }
+
+  .capa__depth {
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.35;
+  }
+
+  .bubbles,
+  .capa--1 .bubbles,
+  .capa--2 .bubbles,
+  .capa--3 .bubbles,
+  .capa--4 .bubbles,
+  .capa--5 .bubbles {
+    grid-template-columns: 1fr;
+    gap: 0.78rem;
+    max-width: 23rem;
+  }
+
+  .capa--1 .bubbles {
+    display: grid;
+  }
+
+  .bubble,
+  .capa--1 .bubble,
+  .capa--2 .bubble,
+  .capa--3 .bubble,
+  .capa--4 .bubble,
+  .capa--5 .bubble {
+    flex: none;
+    flex-basis: auto;
+    justify-self: stretch;
+    min-height: 3.7rem;
+    padding: 0.72rem 0.9rem;
+  }
+
+  .capa--1 .bubble:nth-child(3n),
+  .capa--2 .bubble:nth-child(even),
+  .capa--3 .bubble:nth-child(even),
+  .capa--4 .bubble:nth-child(3n),
+  .capa--5 .bubble:nth-child(even) {
+    width: 100%;
+    margin-left: 0;
+    justify-self: stretch;
+    flex-basis: auto;
+    grid-column: auto;
+    transform: none;
+  }
+
+  .bubble__word {
+    font-size: 0.92rem;
+    line-height: 1.15;
+  }
+
+  .dedicatoria__composer {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .dedicatoria__input {
+    font-size: clamp(2rem, 12vw, 3.1rem);
+  }
+
+  .dedicatoria__emoji-picker {
+    right: 50%;
+    width: min(17rem, calc(100vw - 2rem));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    border-radius: 1.25rem;
+  }
+
+  .dedicatoria__submit {
+    letter-spacing: 0.18em;
+    line-height: 1.3;
+  }
+
+  .dedicatoria__tributos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    min-height: 0;
+  }
+
+  .tributo {
+    position: relative;
+    left: auto !important;
+    top: auto !important;
+    margin: 0.35rem;
+  }
+
+  .footer__inner {
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .modal {
+    padding: 0.75rem;
+  }
+
+  .modal__card {
+    width: 100%;
+    padding: 2.25rem 1.25rem 1.5rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .nav {
+    padding-inline: 0.72rem;
+  }
+
+  .nav__links {
+    grid-template-columns: repeat(2, max-content);
+    gap: 0.32rem 0.52rem;
+  }
+
+  .nav__links a {
+    font-size: 0.6rem;
+  }
+
+  .prologo__overlay,
+  .hero {
+    padding-top: 12.5rem;
+  }
+
+  .hero__title {
+    font-size: 2.05rem;
+  }
+
+  .capa,
+  .intro,
+  .dedicatoria,
+  .cierre {
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
+  }
+
+  .bubble__word {
+    font-size: 0.86rem;
+  }
+}
+
+@media (max-height: 560px) and (orientation: landscape) {
+  .nav {
+    position: absolute;
+  }
+
+  .prologo__overlay,
+  .hero {
+    padding-top: 5.5rem;
+    min-height: 38rem;
+  }
+
+  .prologo__scroll,
+  .hero__scroll {
+    display: none;
+  }
+}
+
+@media (min-width: 861px) {
+  .nav {
+    grid-template-columns: max-content minmax(26rem, auto) max-content;
+  }
+
+  .nav__links {
+    justify-self: end;
+    width: auto;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
+}
