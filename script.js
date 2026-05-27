@@ -258,11 +258,77 @@
      5. NAVEGACIÓN: estado activo + ocultar al scrollear hacia abajo
      ============================================================ */
   const nav = $('.nav');
+  const navToggle = $('#navToggle');
+  const navLinkItems = $$('.nav__links a');
   let lastScrollY = 0;
+
+  const setNavHeight = () => {
+    if (!nav) return;
+    document.documentElement.style.setProperty('--nav-height', `${Math.ceil(nav.getBoundingClientRect().height)}px`);
+  };
+
+  const closeNavMenu = () => {
+    if (!nav || !navToggle) return;
+    nav.classList.remove('is-open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.setAttribute('aria-label', 'Abrir menú');
+    setNavHeight();
+  };
+
+  const openNavMenu = () => {
+    if (!nav || !navToggle) return;
+    nav.classList.add('is-open');
+    navToggle.setAttribute('aria-expanded', 'true');
+    navToggle.setAttribute('aria-label', 'Cerrar menú');
+    setNavHeight();
+  };
+
+  if (nav && navToggle) {
+    navToggle.addEventListener('click', (event) => {
+      event.stopPropagation();
+      if (nav.classList.contains('is-open')) closeNavMenu();
+      else openNavMenu();
+    });
+
+    navLinkItems.forEach(link => {
+      link.addEventListener('click', (event) => {
+        const targetId = link.getAttribute('href');
+        const target = targetId && targetId.startsWith('#') ? $(targetId) : null;
+        if (!target) {
+          closeNavMenu();
+          return;
+        }
+
+        event.preventDefault();
+        closeNavMenu();
+        window.requestAnimationFrame(() => {
+          const navHeight = nav ? Math.ceil(nav.getBoundingClientRect().height) : 0;
+          const top = target.getBoundingClientRect().top + window.scrollY - navHeight - 16;
+          window.scrollTo({ top: Math.max(0, top), behavior: 'auto' });
+          history.pushState(null, '', targetId);
+        });
+      });
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!nav.classList.contains('is-open')) return;
+      if (nav.contains(event.target)) return;
+      closeNavMenu();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeNavMenu();
+    });
+  }
+
+  setNavHeight();
+  window.addEventListener('resize', setNavHeight);
 
   window.addEventListener('scroll', () => {
     const y = window.scrollY;
-    if (y > 80) nav.classList.add('is-scrolled'); else nav.classList.remove('is-scrolled');
+    if (nav) {
+      if (y > 80) nav.classList.add('is-scrolled'); else nav.classList.remove('is-scrolled');
+    }
     lastScrollY = y;
   }, { passive: true });
 
@@ -509,8 +575,6 @@
       } else {
         openCaroEmojiPicker();
       }
-      caroEmoji.focus();
-      caroEmoji.select();
     });
 
     caroEmoji.addEventListener('input', () => {
